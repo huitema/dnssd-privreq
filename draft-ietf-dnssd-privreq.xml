@@ -86,6 +86,19 @@
         <uri>http://privateoctopus.com/</uri>
       </address>
     </author>
+    <author fullname="Christopher A. Wood" initials="C." surname="Wood">
+      <organization>Apple Inc.</organization>
+      <address>
+        <postal>
+          <street></street>
+          <city>Cupertino</city>
+          <code>95014</code>
+          <region>CA</region>
+          <country>U.S.A.</country>
+        </postal>
+        <email>cawood@apple.com</email>
+      </address>
+    </author>
 
     <date year="2018" />
 
