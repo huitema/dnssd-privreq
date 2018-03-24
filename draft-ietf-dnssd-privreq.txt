@@ -5,9 +5,9 @@
 Network Working Group                                         C. Huitema
 Internet-Draft                                      Private Octopus Inc.
 Intended status: Informational                               S. Cheshire
-Expires: September 24, 2018                                      C. Wood
+Expires: September 25, 2018                                      C. Wood
                                                               Apple Inc.
-                                                          March 23, 2018
+                                                          March 24, 2018
 
 
                     Privacy Requirements for DNS-SD
@@ -39,7 +39,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 24, 2018.
+   This Internet-Draft will expire on September 25, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Huitema, et al.        Expires September 24, 2018               [Page 1]
+Huitema, et al.        Expires September 25, 2018               [Page 1]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -69,23 +69,26 @@ Table of Contents
    1.  Introduction  . . . . . . . . . . . . . . . . . . . . . . . .   2
      1.1.  Requirements  . . . . . . . . . . . . . . . . . . . . . .   3
    2.  Discovery Scenarios . . . . . . . . . . . . . . . . . . . . .   3
-   3.  Privacy Implications of DNS-SD  . . . . . . . . . . . . . . .   3
-     3.1.  Privacy Implication of Publishing Service Instance Names    3
-     3.2.  Privacy Implication of Publishing Node Names  . . . . . .   4
-     3.3.  Privacy Implication of Publishing Service Attributes  . .   4
-     3.4.  Device Fingerprinting . . . . . . . . . . . . . . . . . .   5
-     3.5.  Privacy Implication of Discovering Services . . . . . . .   6
-   4.  Desirable Security Properties . . . . . . . . . . . . . . . .   6
-   5.  Other Operational Considerations  . . . . . . . . . . . . . .   9
-     5.1.  Power Management  . . . . . . . . . . . . . . . . . . . .   9
-     5.2.  Protocol Efficiency . . . . . . . . . . . . . . . . . . .   9
-     5.3.  Secure Initialization and Trust Models  . . . . . . . . .   9
-     5.4.  External Dependencies . . . . . . . . . . . . . . . . . .  11
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  11
-   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  11
-   8.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  11
-   9.  Informative References  . . . . . . . . . . . . . . . . . . .  11
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  12
+     2.1.  Private client and public server  . . . . . . . . . . . .   3
+     2.2.  Private client and private server . . . . . . . . . . . .   4
+     2.3.  Wearable client and server  . . . . . . . . . . . . . . .   5
+   3.  Privacy Implications of DNS-SD  . . . . . . . . . . . . . . .   6
+     3.1.  Privacy Implication of Publishing Service Instance Names    6
+     3.2.  Privacy Implication of Publishing Node Names  . . . . . .   7
+     3.3.  Privacy Implication of Publishing Service Attributes  . .   7
+     3.4.  Device Fingerprinting . . . . . . . . . . . . . . . . . .   8
+     3.5.  Privacy Implication of Discovering Services . . . . . . .   9
+   4.  Desirable Security Properties . . . . . . . . . . . . . . . .   9
+   5.  Other Operational Considerations  . . . . . . . . . . . . . .  12
+     5.1.  Power Management  . . . . . . . . . . . . . . . . . . . .  12
+     5.2.  Protocol Efficiency . . . . . . . . . . . . . . . . . . .  12
+     5.3.  Secure Initialization and Trust Models  . . . . . . . . .  12
+     5.4.  External Dependencies . . . . . . . . . . . . . . . . . .  14
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  14
+   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  14
+   8.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  14
+   9.  Informative References  . . . . . . . . . . . . . . . . . . .  14
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  15
 
 1.  Introduction
 
@@ -102,17 +105,17 @@ Table of Contents
    connected to the same network.  Consider for example a traveler
    wanting to upload pictures from a phone to a laptop when connected to
    the Wi-Fi network of an Internet cafe, or two travelers who want to
-   share files between their laptops when waiting for their plane in an
-   airport lounge.
 
 
 
 
-
-Huitema, et al.        Expires September 24, 2018               [Page 2]
+Huitema, et al.        Expires September 25, 2018               [Page 2]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
+
+   share files between their laptops when waiting for their plane in an
+   airport lounge.
 
    We expect that these exchanges will start with a discovery procedure
    using DNS-SD [RFC6763] over mDNS [RFC6762].  One of the devices will
@@ -131,6 +134,153 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    document are to be interpreted as described in [RFC2119].
 
 2.  Discovery Scenarios
+
+2.1.  Private client and public server
+
+   Perhaps the simplest private discovery scenario involves a single
+   client connecting to a public server through a public network.  A
+   common example would be a traveller using a publicly available
+   printer in a business center, in an hotel or at an airport.
+
+                                        ( Taking notes:
+                                        ( David is printing
+                                        ( a document
+                                         ~~~~~~~~~~~
+                                                     o
+            ___                                        o   ___
+           /   \                                         _|___|_
+           |   |                                          |* *|
+            \_/      __                                    \_/
+             |      / /   Discovery   +----------+          |
+            /|\    /_/  <-----------> |  +----+  |         /|\
+           / | \__/                   +--|    |--+        / | \
+          /  |                           |____/          /  |  \
+         /   |                                          /   |   \
+            / \                                            / \
+           /   \                                          /   \
+          /     \                                        /     \
+         /       \                                      /       \
+        /         \                                    /         \
+
+
+
+
+Huitema, et al.        Expires September 25, 2018               [Page 3]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
+
+   In that scenario, the server is public and wants to be discovered,
+   but the client is private.  The adversary will be listening to the
+   network traffic, trying to identify the visitors' devices and their
+   activity.  Identifying devices leads to identifying people, either
+   just for tracking people or as a preliminary to targeted attacks.
+
+   The requirement in that scenario is that the discovery activity
+   should not disclose the identity of the client.
+
+2.2.  Private client and private server
+
+   The second private discovery scenario involves private client
+   connecting to a private server.  A common example would be two people
+   engaging in a collaborative application in a public place, such as
+   for example an airport's lounge.
+
+                                           ( Taking notes:
+                                           ( David is meeting
+                                           ( with Stuart
+                                             ~~~~~~~~~~~
+                                                        o
+            ___                               ___         o   ___
+           /   \                             /   \          _|___|_
+           |   |                             |   |           |* *|
+            \_/      __               __      \_/             \_/
+             |      / /   Discovery   \ \      |               |
+            /|\    /_/  <----------->  \_\    /|\             /|\
+           / | \__/                       \__/ | \           / | \
+          /  |                                 |  \         /  |  \
+         /   |                                 |   \       /   |   \
+            / \                               / \             / \
+           /   \                             /   \           /   \
+          /     \                           /     \         /     \
+         /       \                         /       \       /       \
+        /         \                       /         \     /         \
+
+
+   In that scenario, the collaborative application on one of the device
+   will act asserver, and the application on the other device will act
+   as client.  The server wants to be discovered by the client, but has
+   no desire to be discovered by anyone else.  The adversary will be
+   listening to network traffic, attempting to discover the identity of
+   devices as in the first scenario, and also attemting to discover the
+   patterns of traffic, as these patterns reveal the business and social
+   interactions between the owners of the devices.
+
+   The requirement in that scenario is that the discovery activity
+   should not disclose the identity of either the client or the server.
+
+
+
+Huitema, et al.        Expires September 25, 2018               [Page 4]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
+
+2.3.  Wearable client and server
+
+   The third private discovery scenario involves wearable devices.  A
+   typical example would be the watch on someone's wrist connecting to
+   the phone in their pocket.
+
+
+                                        ( Taking notes:
+                                        ( David' is here. His watch is
+                                        ( talking to his phone
+                                          ~~~~~~~~~~~
+                                                      o
+            ___                                         o  ___
+           /   \                                         _|___|_
+           |   |                                          |* *|
+            \_/                                            \_/
+             |     _/                                       |
+            /|\   //                                       /|\
+           / | \__/  ^                                    / | \
+          /  |__     | Discovery                         /  |  \
+         /   |\ \    v                                  /   |   \
+            / \\_\                                         / \
+           /   \                                          /   \
+          /     \                                        /     \
+         /       \                                      /       \
+        /         \                                    /         \
+
+
+   This third scenario is in many ways similar to the second scenario.
+   It involves two devices, one acting as server and the other acting as
+   client, and it leads to the same requirement that the discovery
+   traffic not disclose the identity of either the client or the server.
+   The main difference is that the devices are managed by a single
+   owner, which can lead to different methods for establishing sceure
+   relations between the device.  There is also an added emphasis in
+   hiding the type of devices that the person wears.
+
+   In addition to tracking the identity of the owner of the devices, the
+   adversary is interested by the characteristics of the devices, such
+   as type, brand and model.  Identifying the type of device can lead to
+   further attacks, from theft to device specific hacking.  The
+   combination of devices worn by the same person will also provide a
+   "fingerprint" of the person, allowing identification.
+
+
+
+
+
+
+
+
+Huitema, et al.        Expires September 25, 2018               [Page 5]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
 
 3.  Privacy Implications of DNS-SD
 
@@ -163,13 +313,6 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    Each PTR record contains a Service Instance Name defined in Section 4
    of [RFC6763]:
 
-
-
-Huitema, et al.        Expires September 24, 2018               [Page 3]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
      Service Instance Name = <Instance> . <Service> . <Domain>
 
    The <Instance> portion of the Service Instance Name is meant to
@@ -185,6 +328,15 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    Alice's Notebook       . _presence._tcp   . local
    Bob's Notebook         . _presence._tcp   . local
    Carol's Notebook       . _presence._tcp   . local
+
+
+
+
+
+Huitema, et al.        Expires September 25, 2018               [Page 6]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
 
    Alice will see the list on her phone and understand intuitively that
    she should pick the first item.  The discovery will "just work".
@@ -217,15 +369,6 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    amount of information varies widely with the particular service and
    its implementation:
 
-
-
-
-
-Huitema, et al.        Expires September 24, 2018               [Page 4]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
    o  Some attributes like the paper size available in a printer, are
       the same on many devices, and thus only provide limited
       information to a tracker.
@@ -242,6 +385,14 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    information about the user.  For instance the _presence service
    reveals the "chat status" to everyone in the same network.  Users
    might not be aware of that.
+
+
+
+
+Huitema, et al.        Expires September 25, 2018               [Page 7]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
 
    Further, TXT records often contain version information about services
    allowing potential attackers to identify devices running exploit-
@@ -274,14 +425,6 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    the presence of the service is futile.  This argument, however, does
    not carry much weight because
 
-
-
-
-Huitema, et al.        Expires September 24, 2018               [Page 5]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
    1.  proving privacy at the discovery layer is of the essence for
        enabling automatically configured privacy-preserving network
        applications.  Application layer protocols are not forced to
@@ -299,6 +442,14 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    offered by a device allows for fingerprinting the device.  This may
    or may not be true, since we can expect that services will be
    designed or updated to avoid leaking fingerprints.  In any case, the
+
+
+
+Huitema, et al.        Expires September 25, 2018               [Page 8]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
+
    design of the discovery service should avoid making a bad situation
    worse, and should as much as possible avoid providing new
    fingerprinting information.
@@ -329,15 +480,6 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
       replayed?
 
    Confidentiality
-
-
-
-
-Huitema, et al.        Expires September 24, 2018               [Page 6]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
       Who can read the information sent in messages?  Ideally this
       should only be the appropriate trusted parties, but it can be hard
       to define who "the appropriate trusted parties" are.  The
@@ -356,6 +498,14 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
       the human user.  It could mean things like the hostname or MAC
       address of the device.  Even when information is authenticated and
       confidential, there can be unexpected sources of information
+
+
+
+Huitema, et al.        Expires September 25, 2018               [Page 9]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
+
       leakage.  For example, if suitable precautions are not taken, the
       source MAC address in data packets can reveal the identity of the
       device manufacturer, which can yield clues about the nature of the
@@ -385,15 +535,6 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
       this threat is a concern, all cleartext identifiers used on the
       network need to be rotated according to some policy, so that a
       given identifier is not reused for too long or in different
-
-
-
-
-Huitema, et al.        Expires September 24, 2018               [Page 7]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
       locations.  These changing identifiers can be decoded by trusted
       entities, but are meaningless to anyone else.
 
@@ -413,6 +554,14 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    Resistance to Denial-of-Service Attack
       In any protocol where the receiver of messages has to perform
       cryptographic operations on those messages, there is a risk of a
+
+
+
+Huitema, et al.        Expires September 25, 2018              [Page 10]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
+
       brute-force flooding attack causing the receiver to expend
       excessive amounts of CPU time (and battery power) just processing
       and discarding those messages.
@@ -445,7 +594,26 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 24, 2018               [Page 8]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Huitema, et al.        Expires September 25, 2018              [Page 11]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -501,7 +669,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 24, 2018               [Page 9]
+Huitema, et al.        Expires September 25, 2018              [Page 12]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -557,7 +725,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 24, 2018              [Page 10]
+Huitema, et al.        Expires September 25, 2018              [Page 13]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -613,7 +781,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 24, 2018              [Page 11]
+Huitema, et al.        Expires September 25, 2018              [Page 14]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -669,7 +837,7 @@ Authors' Addresses
 
 
 
-Huitema, et al.        Expires September 24, 2018              [Page 12]
+Huitema, et al.        Expires September 25, 2018              [Page 15]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -725,4 +893,4 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 24, 2018              [Page 13]
+Huitema, et al.        Expires September 25, 2018              [Page 16]
