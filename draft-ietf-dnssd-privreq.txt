@@ -5,9 +5,9 @@
 Network Working Group                                         C. Huitema
 Internet-Draft                                      Private Octopus Inc.
 Intended status: Informational                               S. Cheshire
-Expires: September 25, 2018                                      C. Wood
+Expires: September 27, 2018                                      C. Wood
                                                               Apple Inc.
-                                                          March 24, 2018
+                                                          March 26, 2018
 
 
                     Privacy Requirements for DNS-SD
@@ -32,14 +32,14 @@ Status of This Memo
    Internet-Drafts are working documents of the Internet Engineering
    Task Force (IETF).  Note that other groups may also distribute
    working documents as Internet-Drafts.  The list of current Internet-
-   Drafts is at https://datatracker.ietf.org/drafts/current/.
+   Drafts is at http://datatracker.ietf.org/drafts/current/.
 
    Internet-Drafts are draft documents valid for a maximum of six months
    and may be updated, replaced, or obsoleted by other documents at any
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 25, 2018.
+   This Internet-Draft will expire on September 27, 2018.
 
 Copyright Notice
 
@@ -48,12 +48,12 @@ Copyright Notice
 
    This document is subject to BCP 78 and the IETF Trust's Legal
    Provisions Relating to IETF Documents
-   (https://trustee.ietf.org/license-info) in effect on the date of
+   (http://trustee.ietf.org/license-info) in effect on the date of
    publication of this document.  Please review these documents
 
 
 
-Huitema, et al.        Expires September 25, 2018               [Page 1]
+Huitema, et al.        Expires September 27, 2018               [Page 1]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -73,22 +73,25 @@ Table of Contents
      2.2.  Private client and private server . . . . . . . . . . . .   4
      2.3.  Wearable client and server  . . . . . . . . . . . . . . .   5
    3.  Privacy Implications of DNS-SD  . . . . . . . . . . . . . . .   6
-     3.1.  Privacy Implication of Publishing Service Instance Names    6
-     3.2.  Privacy Implication of Publishing Node Names  . . . . . .   7
-     3.3.  Privacy Implication of Publishing Service Attributes  . .   7
+     3.1.  Privacy Implication of Publishing Service Instance Names    7
+     3.2.  Privacy Implication of Publishing Node Names  . . . . . .   8
+     3.3.  Privacy Implication of Publishing Service Attributes  . .   8
      3.4.  Device Fingerprinting . . . . . . . . . . . . . . . . . .   8
      3.5.  Privacy Implication of Discovering Services . . . . . . .   9
-   4.  Desirable Security Properties . . . . . . . . . . . . . . . .   9
-   5.  Other Operational Considerations  . . . . . . . . . . . . . .  12
-     5.1.  Power Management  . . . . . . . . . . . . . . . . . . . .  12
-     5.2.  Protocol Efficiency . . . . . . . . . . . . . . . . . . .  12
-     5.3.  Secure Initialization and Trust Models  . . . . . . . . .  12
-     5.4.  External Dependencies . . . . . . . . . . . . . . . . . .  14
-   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  14
-   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  14
-   8.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  14
-   9.  Informative References  . . . . . . . . . . . . . . . . . . .  14
-   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  15
+   4.  Desirable Security Properties . . . . . . . . . . . . . . . .  10
+   5.  Other Operational Considerations  . . . . . . . . . . . . . .  13
+     5.1.  Power Management  . . . . . . . . . . . . . . . . . . . .  13
+     5.2.  Protocol Efficiency . . . . . . . . . . . . . . . . . . .  13
+     5.3.  Secure Initialization and Trust Models  . . . . . . . . .  13
+     5.4.  External Dependencies . . . . . . . . . . . . . . . . . .  15
+   6.  Security Considerations . . . . . . . . . . . . . . . . . . .  15
+   7.  IANA Considerations . . . . . . . . . . . . . . . . . . . . .  15
+   8.  Acknowledgments . . . . . . . . . . . . . . . . . . . . . . .  15
+   9.  Informative References  . . . . . . . . . . . . . . . . . . .  15
+   Appendix A.  Survey of Implementations  . . . . . . . . . . . . .  17
+     A.1.  DNS-SD Privacy Extensions . . . . . . . . . . . . . . . .  17
+     A.2.  Private IoT . . . . . . . . . . . . . . . . . . . . . . .  18
+   Authors' Addresses  . . . . . . . . . . . . . . . . . . . . . . .  19
 
 1.  Introduction
 
@@ -103,17 +106,16 @@ Table of Contents
    There are cases when nodes connected to a network want to provide or
    consume services without exposing their identity to the other parties
    connected to the same network.  Consider for example a traveler
-   wanting to upload pictures from a phone to a laptop when connected to
-   the Wi-Fi network of an Internet cafe, or two travelers who want to
 
 
 
-
-Huitema, et al.        Expires September 25, 2018               [Page 2]
+Huitema, et al.        Expires September 27, 2018               [Page 2]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
+   wanting to upload pictures from a phone to a laptop when connected to
+   the Wi-Fi network of an Internet cafe, or two travelers who want to
    share files between their laptops when waiting for their plane in an
    airport lounge.
 
@@ -142,6 +144,32 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    common example would be a traveller using a publicly available
    printer in a business center, in an hotel or at an airport.
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Huitema, et al.        Expires September 27, 2018               [Page 3]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
+
                                         ( Taking notes:
                                         ( David is printing
                                         ( a document
@@ -163,13 +191,6 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
         /         \                                    /         \
 
 
-
-
-Huitema, et al.        Expires September 25, 2018               [Page 3]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
    In that scenario, the server is public and wants to be discovered,
    but the client is private.  The adversary will be listening to the
    network traffic, trying to identify the visitors' devices and their
@@ -185,6 +206,25 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    connecting to a private server.  A common example would be two people
    engaging in a collaborative application in a public place, such as
    for example an airport's lounge.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Huitema, et al.        Expires September 27, 2018               [Page 4]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
 
                                            ( Taking notes:
                                            ( David is meeting
@@ -219,18 +259,27 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    The requirement in that scenario is that the discovery activity
    should not disclose the identity of either the client or the server.
 
-
-
-Huitema, et al.        Expires September 25, 2018               [Page 4]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
 2.3.  Wearable client and server
 
    The third private discovery scenario involves wearable devices.  A
    typical example would be the watch on someone's wrist connecting to
    the phone in their pocket.
+
+
+
+
+
+
+
+
+
+
+
+
+
+Huitema, et al.        Expires September 27, 2018               [Page 5]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
                                         ( Taking notes:
@@ -270,18 +319,6 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    combination of devices worn by the same person will also provide a
    "fingerprint" of the person, allowing identification.
 
-
-
-
-
-
-
-
-Huitema, et al.        Expires September 25, 2018               [Page 5]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
 3.  Privacy Implications of DNS-SD
 
    DNS-Based Service Discovery (DNS-SD) is defined in [RFC6763].  It
@@ -293,6 +330,13 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
    PTR Record:  Associates a service type in the domain with an
       "instance" name of this service type.
+
+
+
+Huitema, et al.        Expires September 27, 2018               [Page 6]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
 
    SRV Record:  Provides the node name, port number, priority and weight
       associated with the service instance, in conformance with
@@ -329,15 +373,6 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    Bob's Notebook         . _presence._tcp   . local
    Carol's Notebook       . _presence._tcp   . local
 
-
-
-
-
-Huitema, et al.        Expires September 25, 2018               [Page 6]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
    Alice will see the list on her phone and understand intuitively that
    she should pick the first item.  The discovery will "just work".
 
@@ -349,6 +384,15 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    supporting chat application.  This information is not just available
    to devices actively browsing for and offering services, but to
    anybody passively listening to the network traffic.
+
+
+
+
+
+Huitema, et al.        Expires September 27, 2018               [Page 7]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
 
 3.2.  Privacy Implication of Publishing Node Names
 
@@ -386,14 +430,6 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    reveals the "chat status" to everyone in the same network.  Users
    might not be aware of that.
 
-
-
-
-Huitema, et al.        Expires September 25, 2018               [Page 7]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
    Further, TXT records often contain version information about services
    allowing potential attackers to identify devices running exploit-
    prone versions of a certain service.
@@ -403,6 +439,16 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    The combination of information published in DNS-SD has the potential
    to provide a "fingerprint" of a specific device.  Such information
    includes:
+
+
+
+
+
+
+Huitema, et al.        Expires September 27, 2018               [Page 8]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
 
    o  The list of services published by the device, which can be
       retrieved because the SRV records will point to the same host
@@ -442,14 +488,6 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    offered by a device allows for fingerprinting the device.  This may
    or may not be true, since we can expect that services will be
    designed or updated to avoid leaking fingerprints.  In any case, the
-
-
-
-Huitema, et al.        Expires September 25, 2018               [Page 8]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
    design of the discovery service should avoid making a bad situation
    worse, and should as much as possible avoid providing new
    fingerprinting information.
@@ -460,6 +498,14 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    some information such as the list of services they are interested in
    and the domains in which they are looking for the services.  When the
    clients select specific instances of services, they reveal their
+
+
+
+Huitema, et al.        Expires September 27, 2018               [Page 9]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
+
    preference for these instances.  This can be benign if the service
    type is very common, but it could be more problematic for sensitive
    services, such as for example some private messaging services.
@@ -498,14 +544,6 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
       the human user.  It could mean things like the hostname or MAC
       address of the device.  Even when information is authenticated and
       confidential, there can be unexpected sources of information
-
-
-
-Huitema, et al.        Expires September 25, 2018               [Page 9]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
       leakage.  For example, if suitable precautions are not taken, the
       source MAC address in data packets can reveal the identity of the
       device manufacturer, which can yield clues about the nature of the
@@ -516,6 +554,14 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
       sensitive identifiers.  This transforms a sensitive unique
       identifier such as an email address into a scrambled (but still
       unique) identifier.  Unfortunately simple solutions may be
+
+
+
+Huitema, et al.        Expires September 27, 2018              [Page 10]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
+
       vulnerable to offline dictionary attacks.  Given a scrambled
       unique identifier, it may be possible to do a brute-force attack,
       trying billions of known and speculative email addresses until a
@@ -554,14 +600,6 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
    Resistance to Denial-of-Service Attack
       In any protocol where the receiver of messages has to perform
       cryptographic operations on those messages, there is a risk of a
-
-
-
-Huitema, et al.        Expires September 25, 2018              [Page 10]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
       brute-force flooding attack causing the receiver to expend
       excessive amounts of CPU time (and battery power) just processing
       and discarding those messages.
@@ -571,6 +609,14 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
       offers are forged by entities who do not possess the corresponding
       secret key material.  These attacks may be used to learn the
       identity of a communicating party, actively or passively.
+
+
+
+
+Huitema, et al.        Expires September 27, 2018              [Page 11]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
 
    Sender Deniability
       Deniability of sender activity, e.g., of broadcasting a discovery
@@ -613,7 +659,17 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 25, 2018              [Page 11]
+
+
+
+
+
+
+
+
+
+
+Huitema, et al.        Expires September 27, 2018              [Page 12]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -669,7 +725,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 25, 2018              [Page 12]
+Huitema, et al.        Expires September 27, 2018              [Page 13]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -725,7 +781,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 25, 2018              [Page 13]
+Huitema, et al.        Expires September 27, 2018              [Page 14]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -753,6 +809,16 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 9.  Informative References
 
+   [I-D.huitema-dnssd-privacy]
+              Huitema, C. and D. Kaiser, "Privacy Extensions for DNS-
+              SD", 2017, <https://tools.ietf.org/html/draft-ietf-dnssd-
+              privacy-03>.
+
+   [I-D.ietf-dnssd-pairing]
+              Huitema, C. and D. Kaiser, "Device Pairing Using Short
+              Authentication Strings", 2017,
+              <https://tools.ietf.org/html/draft-ietf-dnssd-pairing-03>.
+
    [K17]      Kaiser, D., "Efficient Privacy-Preserving
               Configurationless Service Discovery Supporting Multi-Link
               Networks", 2017,
@@ -769,6 +835,13 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
               <http://ieeexplore.ieee.org/xpl/
               articleDetails.jsp?arnumber=7056899>.
 
+
+
+Huitema, et al.        Expires September 27, 2018              [Page 15]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
+
    [RFC1033]  Lottor, M., "Domain Administrators Operations Guide",
               RFC 1033, DOI 10.17487/RFC1033, November 1987,
               <https://www.rfc-editor.org/info/rfc1033>.
@@ -777,28 +850,19 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
               STD 13, RFC 1034, DOI 10.17487/RFC1034, November 1987,
               <https://www.rfc-editor.org/info/rfc1034>.
 
-
-
-
-
-Huitema, et al.        Expires September 25, 2018              [Page 14]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
    [RFC1035]  Mockapetris, P., "Domain names - implementation and
               specification", STD 13, RFC 1035, DOI 10.17487/RFC1035,
               November 1987, <https://www.rfc-editor.org/info/rfc1035>.
 
    [RFC2119]  Bradner, S., "Key words for use in RFCs to Indicate
               Requirement Levels", BCP 14, RFC 2119,
-              DOI 10.17487/RFC2119, March 1997,
-              <https://www.rfc-editor.org/info/rfc2119>.
+              DOI 10.17487/RFC2119, March 1997, <https://www.rfc-
+              editor.org/info/rfc2119>.
 
    [RFC2782]  Gulbrandsen, A., Vixie, P., and L. Esibov, "A DNS RR for
               specifying the location of services (DNS SRV)", RFC 2782,
-              DOI 10.17487/RFC2782, February 2000,
-              <https://www.rfc-editor.org/info/rfc2782>.
+              DOI 10.17487/RFC2782, February 2000, <https://www.rfc-
+              editor.org/info/rfc2782>.
 
    [RFC5054]  Taylor, D., Wu, T., Mavrogiannopoulos, N., and T. Perrin,
               "Using the Secure Remote Password (SRP) Protocol for TLS
@@ -806,41 +870,149 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
               2007, <https://www.rfc-editor.org/info/rfc5054>.
 
    [RFC6762]  Cheshire, S. and M. Krochmal, "Multicast DNS", RFC 6762,
-              DOI 10.17487/RFC6762, February 2013,
-              <https://www.rfc-editor.org/info/rfc6762>.
+              DOI 10.17487/RFC6762, February 2013, <https://www.rfc-
+              editor.org/info/rfc6762>.
 
    [RFC6763]  Cheshire, S. and M. Krochmal, "DNS-Based Service
               Discovery", RFC 6763, DOI 10.17487/RFC6763, February 2013,
               <https://www.rfc-editor.org/info/rfc6763>.
 
+   [RFC7858]  Hu, Z., Zhu, L., Heidemann, J., Mankin, A., Wessels, D.,
+              and P. Hoffman, "Specification for DNS over Transport
+              Layer Security (TLS)", RFC 7858, DOI 10.17487/RFC7858, May
+              2016, <https://www.rfc-editor.org/info/rfc7858>.
+
    [RFC8117]  Huitema, C., Thaler, D., and R. Winter, "Current Hostname
               Practice Considered Harmful", RFC 8117,
-              DOI 10.17487/RFC8117, March 2017,
-              <https://www.rfc-editor.org/info/rfc8117>.
+              DOI 10.17487/RFC8117, March 2017, <https://www.rfc-
+              editor.org/info/rfc8117>.
 
    [RFC8235]  Hao, F., Ed., "Schnorr Non-interactive Zero-Knowledge
               Proof", RFC 8235, DOI 10.17487/RFC8235, September 2017,
               <https://www.rfc-editor.org/info/rfc8235>.
 
+
+
+Huitema, et al.        Expires September 27, 2018              [Page 16]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
+
    [RFC8236]  Hao, F., Ed., "J-PAKE: Password-Authenticated Key Exchange
               by Juggling", RFC 8236, DOI 10.17487/RFC8236, September
               2017, <https://www.rfc-editor.org/info/rfc8236>.
 
-Authors' Addresses
+   [SIGMA]    Krawczyk, H., "SIGMA: The 'SIGn-and-MAc'approach to
+              authenticated Diffie-Hellman and its use in the IKE
+              protocols", 2003, <http://link.springer.com/content/
+              pdf/10.1007/978-3-540-45146-4_24.pdf>.
+
+   [Wu16]     Wu, D., Taly, A., Shankar, A., and D. Boneh, "Privacy,
+              discovery, and authentication for the internet of things",
+              2016, <https://arxiv.org/pdf/1604.06959.pdf%22>.
+
+Appendix A.  Survey of Implementations
+
+   This section surveys several private service discovery designs in the
+   context of the threat model detailed above.
+
+A.1.  DNS-SD Privacy Extensions
+
+   Huitema et al.  [I-D.huitema-dnssd-privacy] decompose private service
+   discovery into two stages: (1) identify specific peers offering
+   private services, and (2) issue unicast DNS-SD queries to those hosts
+   after connecting over TLS using a previously agreed upon pre-shared
+   key (PSK), or pairing key.  Any out-of-band pairing mechanism will
+   suffice for PSK establishment, though the authors specifically
+   mention [I-D.ietf-dnssd-pairing] as the pairing mechanism.  Step (1)
+   is done by broadcasting "private instance names" to local peers,
+   using service-specific pairing keys.  A private instance name N' for
+   some service with name N is composed of a unique nonce r and
+   commitment to r using N_k.  Commitments are constructed by hashing
+   N_k with the nonce.  Only owners of N_k may verify its correctness
+   and, upon doing so, answer as needed.  The draft recommends
+   randomizing hostnames in SRV responses to minimize likability to
+   specific hosts.  Note that this does not prevent fingerprinting and
+   tracking using that hostname.
+
+   After discovering its peers, a node will directly connect to each
+   device using TLS, authenticated with a PSK derived from each
+   associated pairing key, and issue DNS-SD queries per usual.  DNS
+   messages are formulated as per [RFC7858].
+
+   As an optimization, the authors recommend that each nonce be
+   deterministically derived based on time so that commitment proofs may
+   be precomputed asynchronously.  This avoids O(N*M) computation, where
+   N is the number of nodes in a local network and M is the number of
+   per-node pairings.
 
 
 
 
-
-
-
-
-
-
-Huitema, et al.        Expires September 25, 2018              [Page 15]
+Huitema, et al.        Expires September 27, 2018              [Page 17]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
+
+   This system has the following properties:
+
+   1.  Symmetric work load
+
+   2.  No fingerprinting or tracking prevention
+
+   3.  No unlinkability
+
+A.2.  Private IoT
+
+   Boneh et al.  [Wu16] developed an approach for private service
+   discovery that reduces to private mutual authentication.  Moreover,
+   it should be infeasible for any adversary to forge advertisements or
+   impersonate anyone else on the network.  Specifically, service
+   discoverers only wish to reveal their identity to services they
+   trust, and vice versa.  Existing protocols such as TLS, IKE, and
+   [SIGMA] require that one side reveal its identity first.  Their
+   approach first allocates, via some policy manager, key pairs
+   associated with human-readable policy names.  For example, user Alice
+   might have a key pair associated with the names /Alice, /Alice/
+   Family, and /Alice/Device.  Her key is bound to each of these names.
+   Authentication policies (and trust models) are then expressed as
+   policy prefix patterns, e.g., /Alice/*. Broadcast messages are
+   encrypted to policies.  For example, Alice might encrypt a message m
+   to the policy /Bob/*. Only Bob, who owns a private key bound to,
+   e.g., /Bob/Devices, can decrypt m.  (This procedure uses a form of
+   identity-based encryption called prefix-based encryption.  Readers
+   are referred to [Wu16] for a thorough description.)
+
+   Using prefix- and policy-based encryption, service discovery is
+   decomposed into two steps: (1) service announcement and (2) key
+   exchange, similar to [I-D.huitema-dnssd-privacy].  Announcements
+   carry service identities, ephemeral key shares, and a signature, all
+   encrypted under the service's desired policy prefix, e.g., /Alice/
+   Family/*. Upon receipt of an announcement, clients with matching
+   policy private keys can decrypt the announcement and use the
+   ephemeral key share to perform an Authenticated Diffie Hellman key
+   exchange with the service.  Upon completion, the derived shared
+   secret may be used for any further communication, e.g., DNS-SD
+   queries, if needed.
+
+   This system has the following properties:
+
+   1.  Mutual identity privacy
+
+   2.  Asymmetric work load (computation on the order of advertisements)
+
+   3.  Client identity policy, cleartext server policy
+
+
+
+Huitema, et al.        Expires September 27, 2018              [Page 18]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
+
+   4.  No unlinkability
+
+Authors' Addresses
 
    Christian Huitema
    Private Octopus Inc.
@@ -889,8 +1061,4 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-
-
-
-
-Huitema, et al.        Expires September 25, 2018              [Page 16]
+Huitema, et al.        Expires September 27, 2018              [Page 19]
