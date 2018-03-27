@@ -44,7 +44,10 @@
    'http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8235.xml'>
 <!ENTITY rfc8236 PUBLIC ''
    'http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8236.xml'>
-
+<!ENTITY I-D.ietf-dnssd-pairing PUBLIC ''
+   "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnssd-pairing.xml"> 
+<!ENTITY I-D.huitema-dnssd-privacy PUBLIC ''
+   "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.huitema-dnssd-privacy.xml"> 
 <!ENTITY I-D.ietf-intarea-hostname-practice PUBLIC ''
    "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-intarea-hostname-practice.xml"> 
 <!ENTITY I-D.ietf-tls-tls13 PUBLIC ''  
@@ -780,6 +783,9 @@ This draft does not require any IANA action.
   &rfc8117;
   &rfc8235;
   &rfc8236;
+  &I-D.ietf-dnssd-pairing;
+  &I-D.huitema-dnssd-privacy;
+
 <reference anchor="KW14a" target="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7011331">
   <front>
     <title>Adding Privacy to Multicast DNS Service Discovery</title>
@@ -813,32 +819,6 @@ This draft does not require any IANA action.
     <title>Efficient Privacy-Preserving Configurationless Service Discovery Supporting Multi-Link Networks</title>
     <author initials="D." surname="Kaiser" fullname="Daniel Kaiser">
       <organization/>
-    </author>
-    <date year="2017"/>
-  </front>
-</reference>
-
-<reference anchor="I-D.huitema-dnssd-privacy" target="https://tools.ietf.org/html/draft-ietf-dnssd-privacy-03">
-  <front>
-    <title>Privacy Extensions for DNS-SD</title>
-    <author initials='C.' surname='Huitema' fullname='Christian Huitema'>
-      <organization>Private Octopus Inc.</organization>
-    </author>
-    <author initials='D.' surname='Kaiser' fullname='Daniel Kaiser'>
-      <organization>University of Konstanz</organization>
-    </author>
-    <date year="2017"/>
-  </front>
-</reference>
-
-<reference anchor="I-D.ietf-dnssd-pairing" target="https://tools.ietf.org/html/draft-ietf-dnssd-pairing-03">
-  <front>
-    <title>Device Pairing Using Short Authentication Strings</title>
-    <author initials='C.' surname='Huitema' fullname='Christian Huitema'>
-      <organization>Private Octopus Inc.</organization>
-    </author>
-    <author initials='D.' surname='Kaiser' fullname='Daniel Kaiser'>
-      <organization>University of Konstanz</organization>
     </author>
     <date year="2017"/>
   </front>
@@ -881,34 +861,86 @@ This draft does not require any IANA action.
       detailed above.</t>
 
     <section title="DNS-SD Privacy Extensions">
-      <t>Huitema et al. <xref target="I-D.huitema-dnssd-privacy"></xref> decompose private service discovery into two stages: (1) identify specific peers offering private services, and (2) issue unicast DNS-SD queries to those hosts after connecting over TLS using a previously agreed upon pre-shared key (PSK), or pairing key. Any out-of-band pairing mechanism will suffice for PSK establishment, though the authors specifically mention <xref target="I-D.ietf-dnssd-pairing"></xref> as the pairing mechanism. Step (1) is done by broadcasting “private instance names” to local peers, using service-specific pairing keys. A private instance name N’ for some service with name N is composed of a unique nonce r and commitment to r using N_k. Commitments are constructed by hashing N_k with the nonce. Only owners of N_k may verify its correctness and, upon doing so, answer as needed. The draft recommends randomizing hostnames in SRV responses to minimize likability to specific hosts. Note that this does not prevent fingerprinting and tracking using that hostname.</t>
+      <t>Huitema and Kaiser <xref target="I-D.huitema-dnssd-privacy"></xref> decompose 
+      private service discovery into two stages: (1) identify specific peers offering 
+      private services, and (2) issue unicast DNS-SD queries to those hosts after 
+      connecting over TLS using a previously agreed upon pre-shared key (PSK), or 
+      pairing key. Any out-of-band pairing mechanism will suffice for PSK establishment, 
+      though the authors specifically mention <xref target="I-D.ietf-dnssd-pairing"></xref> 
+      as the pairing mechanism. Step (1) is done by broadcasting "private instance names"
+      to local peers, using service-specific pairing keys. A private instance name N' 
+      for some service with name N is composed of a unique nonce r and commitment to r using 
+      N_k. Commitments are constructed by hashing N_k with the nonce. Only owners of N_k 
+      may verify its correctness and, upon doing so, answer as needed. The draft recommends 
+      randomizing hostnames in SRV responses to minimize likability to specific hosts. 
+      Note that this does not prevent fingerprinting and tracking using that hostname.</t>
 
-      <t>After discovering its peers, a node will directly connect to each device using TLS, authenticated with a PSK derived from each associated pairing key, and issue DNS-SD queries per usual. DNS messages are formulated as per <xref target="RFC7858"></xref>.</t>
+      <t>After discovering its peers, a node will directly connect to each device using 
+        TLS, authenticated with a PSK derived from each associated pairing key, and 
+        issue DNS-SD queries per usual. DNS messages are formulated as per 
+        <xref target="RFC7858"></xref>.</t>
 
-      <t>As an optimization, the authors recommend that each nonce be deterministically derived based on time so that commitment proofs may be precomputed asynchronously. This avoids O(N*M) computation, where N is the number of nodes in a local network and M is the number of per-node pairings.</t>
+      <t>As an optimization, the authors recommend that each nonce be deterministically 
+        derived based on time so that commitment proofs may be precomputed asynchronously. 
+        This avoids O(N*M) computation, where N is the number of nodes in a local network 
+        and M is the number of per-node pairings.</t>
 
       <t>
         This system has the following properties:
         <list style='numbers'>
-          <t>Symmetric work load</t>
-          <t>No fingerprinting or tracking prevention</t>
-          <t>No unlinkability</t>
+          <t>Symmetric work load: clients and servers can pre-compute private instance names
+            as a function of their pairing secret and predictable nonce.</t>
+          <t>Mutual identity privacy: Both client and server identities are hidden from 
+            active and passive attackers that do not subvert the pairing process.</t>
+          <t>No client set size hiding: The number of private instance names
+          reveals the number of unique pairings a server has with its clients.</t>
+          <t>Unlinkability: Private service names are unlinkable to post-discovery TLS 
+            connections. (Note that if deterministic nonces repeat, servers risk linkability
+            across private service names.)</t>
+          <t>No fingerprinting: Assuming servers use fresh nonces per private instance name, 
+            advertisements change regularly.</t>
         </list>
       </t>
     </section>
 
     <section title="Private IoT">
-      <t>Boneh et al. <xref target="Wu16"></xref> developed an approach for private service discovery that reduces to private mutual  authentication. Moreover, it should be infeasible for any adversary to forge advertisements or impersonate anyone else on the network. Specifically, service discoverers only wish to reveal their identity to services they trust, and vice versa. Existing protocols such as TLS, IKE, and <xref target="SIGMA"></xref> require that one side reveal its identity first. Their approach first allocates, via some policy manager, key pairs associated with human-readable policy names. For example, user Alice might have a key pair associated with the names /Alice, /Alice/Family, and /Alice/Device. Her key is bound to each of these names. Authentication policies (and trust models) are then expressed as policy prefix patterns, e.g., /Alice/*. Broadcast messages are encrypted to policies. For example, Alice might encrypt a message m to the policy /Bob/*. Only Bob, who owns a private key bound to, e.g., /Bob/Devices, can decrypt m. (This procedure uses a form of identity-based encryption called prefix-based encryption. Readers are referred to <xref target="Wu16"></xref> for a thorough description.)</t>
+      <t>Boneh et al. <xref target="Wu16"></xref> developed an approach for private service 
+      discovery that reduces to private mutual authentication. Moreover, it should be 
+      infeasible for any adversary to forge advertisements or impersonate anyone else on 
+      the network. Specifically, service discoverers only wish to reveal their identity 
+      to services they trust, and vice versa. Existing protocols such as TLS, IKE, and 
+      <xref target="SIGMA">SIGMA</xref> require that one side reveal its identity first. 
+      Their approach first allocates, via some policy manager, key pairs associated with 
+      human-readable policy names. For example, user Alice might have a key pair associated 
+      with the names /Alice, /Alice/Family, and /Alice/Device. Her key is bound to each 
+      of these names. Authentication policies (and trust models) are then expressed as 
+      policy prefix patterns, e.g., /Alice/*. Broadcast messages are encrypted to policies. 
+      For example, Alice might encrypt a message m to the policy /Bob/*. Only Bob, who 
+      owns a private key bound to, e.g., /Bob/Devices, can decrypt m. (This procedure 
+      uses a form of identity-based encryption called prefix-based encryption. Readers 
+      are referred to <xref target="Wu16"></xref> for a thorough description.)</t>
 
-      <t>Using prefix- and policy-based encryption, service discovery is decomposed into two steps: (1) service announcement and (2) key exchange, similar to <xref target="I-D.huitema-dnssd-privacy"></xref>. Announcements carry service identities, ephemeral key shares, and a signature, all encrypted under the service’s desired policy prefix, e.g., /Alice/Family/*. Upon receipt of an announcement, clients with matching policy private keys can decrypt the announcement and use the ephemeral key share to perform an Authenticated Diffie Hellman key exchange with the service. Upon completion, the derived shared secret may be used for any further communication, e.g., DNS-SD queries, if needed.</t>
+      <t>Using prefix- and policy-based encryption, service discovery is decomposed into 
+        two steps: (1) service announcement and (2) key exchange, similar to 
+        <xref target="I-D.huitema-dnssd-privacy"></xref>. Announcements carry service 
+        identities, ephemeral key shares, and a signature, all encrypted under the 
+        service’s desired policy prefix, e.g., /Alice/Family/*. Upon receipt of an 
+        announcement, clients with matching policy private keys can decrypt the 
+        announcement and use the ephemeral key share to perform an Authenticated 
+        Diffie Hellman key exchange with the service. Upon completion, the derived 
+        shared secret may be used for any further communication, e.g., DNS-SD queries, 
+        if needed.</t>
 
       <t>
         This system has the following properties:
         <list style='numbers'>
-          <t>Mutual identity privacy</t>
-          <t>Asymmetric work load (computation on the order of advertisements)</t>
-          <t>Client identity policy, cleartext server policy </t>
-          <t>No unlinkability</t>
+          <t>Asymmetric work load: computation for clients is on the order of advertisements.</t>
+          <t>Mutual identity privacy: Both client and server identities are hidden from 
+            active and passive attackers.</t>
+          <t>Client set size hiding: Policy-based encryption advertisements hides the number
+            of clients with matching policy keys.</t>
+          <t>Unlinkability: Client initiated connections are unlinkable to service advertisements (modulo
+            network-layer connection information, such as advertisement origin and connection destination).</t>
         </list>
       </t>
     </section>

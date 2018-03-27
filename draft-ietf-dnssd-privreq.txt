@@ -5,9 +5,9 @@
 Network Working Group                                         C. Huitema
 Internet-Draft                                      Private Octopus Inc.
 Intended status: Informational                               S. Cheshire
-Expires: September 27, 2018                                      C. Wood
+Expires: September 28, 2018                                      C. Wood
                                                               Apple Inc.
-                                                          March 26, 2018
+                                                          March 27, 2018
 
 
                     Privacy Requirements for DNS-SD
@@ -39,7 +39,7 @@ Status of This Memo
    time.  It is inappropriate to use Internet-Drafts as reference
    material or to cite them other than as "work in progress."
 
-   This Internet-Draft will expire on September 27, 2018.
+   This Internet-Draft will expire on September 28, 2018.
 
 Copyright Notice
 
@@ -53,7 +53,7 @@ Copyright Notice
 
 
 
-Huitema, et al.        Expires September 27, 2018               [Page 1]
+Huitema, et al.        Expires September 28, 2018               [Page 1]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -109,7 +109,7 @@ Table of Contents
 
 
 
-Huitema, et al.        Expires September 27, 2018               [Page 2]
+Huitema, et al.        Expires September 28, 2018               [Page 2]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -165,7 +165,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018               [Page 3]
+Huitema, et al.        Expires September 28, 2018               [Page 3]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -221,7 +221,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018               [Page 4]
+Huitema, et al.        Expires September 28, 2018               [Page 4]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -277,7 +277,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018               [Page 5]
+Huitema, et al.        Expires September 28, 2018               [Page 5]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -333,7 +333,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018               [Page 6]
+Huitema, et al.        Expires September 28, 2018               [Page 6]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -389,7 +389,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018               [Page 7]
+Huitema, et al.        Expires September 28, 2018               [Page 7]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -445,7 +445,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018               [Page 8]
+Huitema, et al.        Expires September 28, 2018               [Page 8]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -501,7 +501,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018               [Page 9]
+Huitema, et al.        Expires September 28, 2018               [Page 9]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -557,7 +557,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018              [Page 10]
+Huitema, et al.        Expires September 28, 2018              [Page 10]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -613,7 +613,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018              [Page 11]
+Huitema, et al.        Expires September 28, 2018              [Page 11]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -669,7 +669,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018              [Page 12]
+Huitema, et al.        Expires September 28, 2018              [Page 12]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -725,7 +725,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018              [Page 13]
+Huitema, et al.        Expires September 28, 2018              [Page 13]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -781,7 +781,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018              [Page 14]
+Huitema, et al.        Expires September 28, 2018              [Page 14]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -811,13 +811,13 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
    [I-D.huitema-dnssd-privacy]
               Huitema, C. and D. Kaiser, "Privacy Extensions for DNS-
-              SD", 2017, <https://tools.ietf.org/html/draft-ietf-dnssd-
-              privacy-03>.
+              SD", draft-huitema-dnssd-privacy-02 (work in progress),
+              September 2016.
 
    [I-D.ietf-dnssd-pairing]
               Huitema, C. and D. Kaiser, "Device Pairing Using Short
-              Authentication Strings", 2017,
-              <https://tools.ietf.org/html/draft-ietf-dnssd-pairing-03>.
+              Authentication Strings", draft-ietf-dnssd-pairing-03 (work
+              in progress), September 2017.
 
    [K17]      Kaiser, D., "Efficient Privacy-Preserving
               Configurationless Service Discovery Supporting Multi-Link
@@ -837,7 +837,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018              [Page 15]
+Huitema, et al.        Expires September 28, 2018              [Page 15]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -893,7 +893,7 @@ Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
 
-Huitema, et al.        Expires September 27, 2018              [Page 16]
+Huitema, et al.        Expires September 28, 2018              [Page 16]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
@@ -918,22 +918,22 @@ Appendix A.  Survey of Implementations
 
 A.1.  DNS-SD Privacy Extensions
 
-   Huitema et al.  [I-D.huitema-dnssd-privacy] decompose private service
-   discovery into two stages: (1) identify specific peers offering
-   private services, and (2) issue unicast DNS-SD queries to those hosts
-   after connecting over TLS using a previously agreed upon pre-shared
-   key (PSK), or pairing key.  Any out-of-band pairing mechanism will
-   suffice for PSK establishment, though the authors specifically
-   mention [I-D.ietf-dnssd-pairing] as the pairing mechanism.  Step (1)
-   is done by broadcasting "private instance names" to local peers,
-   using service-specific pairing keys.  A private instance name N' for
-   some service with name N is composed of a unique nonce r and
-   commitment to r using N_k.  Commitments are constructed by hashing
-   N_k with the nonce.  Only owners of N_k may verify its correctness
-   and, upon doing so, answer as needed.  The draft recommends
-   randomizing hostnames in SRV responses to minimize likability to
-   specific hosts.  Note that this does not prevent fingerprinting and
-   tracking using that hostname.
+   Huitema and Kaiser [I-D.huitema-dnssd-privacy] decompose private
+   service discovery into two stages: (1) identify specific peers
+   offering private services, and (2) issue unicast DNS-SD queries to
+   those hosts after connecting over TLS using a previously agreed upon
+   pre-shared key (PSK), or pairing key.  Any out-of-band pairing
+   mechanism will suffice for PSK establishment, though the authors
+   specifically mention [I-D.ietf-dnssd-pairing] as the pairing
+   mechanism.  Step (1) is done by broadcasting "private instance names"
+   to local peers, using service-specific pairing keys.  A private
+   instance name N' for some service with name N is composed of a unique
+   nonce r and commitment to r using N_k.  Commitments are constructed
+   by hashing N_k with the nonce.  Only owners of N_k may verify its
+   correctness and, upon doing so, answer as needed.  The draft
+   recommends randomizing hostnames in SRV responses to minimize
+   likability to specific hosts.  Note that this does not prevent
+   fingerprinting and tracking using that hostname.
 
    After discovering its peers, a node will directly connect to each
    device using TLS, authenticated with a PSK derived from each
@@ -949,18 +949,31 @@ A.1.  DNS-SD Privacy Extensions
 
 
 
-Huitema, et al.        Expires September 27, 2018              [Page 17]
+Huitema, et al.        Expires September 28, 2018              [Page 17]
 
 Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
    This system has the following properties:
 
-   1.  Symmetric work load
+   1.  Symmetric work load: clients and servers can pre-compute private
+       instance names as a function of their pairing secret and
+       predictable nonce.
 
-   2.  No fingerprinting or tracking prevention
+   2.  Mutual identity privacy: Both client and server identities are
+       hidden from active and passive attackers that do not subvert the
+       pairing process.
 
-   3.  No unlinkability
+   3.  No client set size hiding: The number of private instance names
+       reveals the number of unique pairings a server has with its
+       clients.
+
+   4.  Unlinkability: Private service names are unlinkable to post-
+       discovery TLS connections.  (Note that if deterministic nonces
+       repeat, servers risk linkability across private service names.)
+
+   5.  No fingerprinting: Assuming servers use fresh nonces per private
+       instance name, advertisements change regularly.
 
 A.2.  Private IoT
 
@@ -970,7 +983,7 @@ A.2.  Private IoT
    impersonate anyone else on the network.  Specifically, service
    discoverers only wish to reveal their identity to services they
    trust, and vice versa.  Existing protocols such as TLS, IKE, and
-   [SIGMA] require that one side reveal its identity first.  Their
+   SIGMA [SIGMA] require that one side reveal its identity first.  Their
    approach first allocates, via some policy manager, key pairs
    associated with human-readable policy names.  For example, user Alice
    might have a key pair associated with the names /Alice, /Alice/
@@ -989,6 +1002,14 @@ A.2.  Private IoT
    carry service identities, ephemeral key shares, and a signature, all
    encrypted under the service's desired policy prefix, e.g., /Alice/
    Family/*. Upon receipt of an announcement, clients with matching
+
+
+
+Huitema, et al.        Expires September 28, 2018              [Page 18]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
+
+
    policy private keys can decrypt the announcement and use the
    ephemeral key share to perform an Authenticated Diffie Hellman key
    exchange with the service.  Upon completion, the derived shared
@@ -997,20 +1018,19 @@ A.2.  Private IoT
 
    This system has the following properties:
 
-   1.  Mutual identity privacy
+   1.  Asymmetric work load: computation for clients is on the order of
+       advertisements.
 
-   2.  Asymmetric work load (computation on the order of advertisements)
+   2.  Mutual identity privacy: Both client and server identities are
+       hidden from active and passive attackers.
 
-   3.  Client identity policy, cleartext server policy
+   3.  Client set size hiding: Policy-based encryption advertisements
+       hides the number of clients with matching policy keys.
 
-
-
-Huitema, et al.        Expires September 27, 2018              [Page 18]
-
-Internet-Draft         DNS-SD Privacy Requirements            March 2018
-
-
-   4.  No unlinkability
+   4.  Unlinkability: Client initiated connections are unlinkable to
+       service advertisements (modulo network-layer connection
+       information, such as advertisement origin and connection
+       destination).
 
 Authors' Addresses
 
@@ -1031,6 +1051,19 @@ Authors' Addresses
 
    Phone: +1 408 974 3207
    Email: cheshire@apple.com
+
+
+
+
+
+
+
+
+
+
+Huitema, et al.        Expires September 28, 2018              [Page 19]
+
+Internet-Draft         DNS-SD Privacy Requirements            March 2018
 
 
    Christopher A. Wood
@@ -1061,4 +1094,27 @@ Authors' Addresses
 
 
 
-Huitema, et al.        Expires September 27, 2018              [Page 19]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Huitema, et al.        Expires September 28, 2018              [Page 20]
