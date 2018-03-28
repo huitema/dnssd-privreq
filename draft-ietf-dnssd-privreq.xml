@@ -46,8 +46,8 @@
    'http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8236.xml'>
 <!ENTITY I-D.ietf-dnssd-pairing PUBLIC ''
    "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnssd-pairing.xml"> 
-<!ENTITY I-D.huitema-dnssd-privacy PUBLIC ''
-   "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.huitema-dnssd-privacy.xml"> 
+<!ENTITY I-D.ietf-dnssd-privacy PUBLIC ''
+   "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnssd-privacy.xml"> 
 <!ENTITY I-D.ietf-intarea-hostname-practice PUBLIC ''
    "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-intarea-hostname-practice.xml"> 
 <!ENTITY I-D.ietf-tls-tls13 PUBLIC ''  
@@ -784,7 +784,7 @@ This draft does not require any IANA action.
   &rfc8235;
   &rfc8236;
   &I-D.ietf-dnssd-pairing;
-  &I-D.huitema-dnssd-privacy;
+  &I-D.ietf-dnssd-privacy;
 
 <reference anchor="KW14a" target="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7011331">
   <front>
@@ -861,7 +861,7 @@ This draft does not require any IANA action.
       detailed above.</t>
 
     <section title="DNS-SD Privacy Extensions">
-      <t>Huitema and Kaiser <xref target="I-D.huitema-dnssd-privacy"></xref> decompose 
+      <t>Huitema and Kaiser <xref target="I-D.ietf-dnssd-privacy"></xref> decompose 
       private service discovery into two stages: (1) identify specific peers offering 
       private services, and (2) issue unicast DNS-SD queries to those hosts after 
       connecting over TLS using a previously agreed upon pre-shared key (PSK), or 
@@ -872,8 +872,12 @@ This draft does not require any IANA action.
       for some service with name N is composed of a unique nonce r and commitment to r using 
       N_k. Commitments are constructed by hashing N_k with the nonce. Only owners of N_k 
       may verify its correctness and, upon doing so, answer as needed. The draft recommends 
-      randomizing hostnames in SRV responses to minimize likability to specific hosts. 
-      Note that this does not prevent fingerprinting and tracking using that hostname.</t>
+      randomizing hostnames in SRV responses along with other identifiers, such as 
+      MAC addresses, to minimize likability to specific hosts. 
+      Note that this alone does not prevent fingerprinting and tracking using that hostname.
+      However, when done in conjunction with steps (1) and (2) above, this mitigates fingerprinting
+      and tracking since different hostnames are used across venues and real discovered services 
+      remain hidden behind private instance names.</t>
 
       <t>After discovering its peers, a node will directly connect to each device using 
         TLS, authenticated with a PSK derived from each associated pairing key, and 
@@ -893,7 +897,9 @@ This draft does not require any IANA action.
           <t>Mutual identity privacy: Both client and server identities are hidden from 
             active and passive attackers that do not subvert the pairing process.</t>
           <t>No client set size hiding: The number of private instance names
-          reveals the number of unique pairings a server has with its clients.</t>
+          reveals the number of unique pairings a server has with its clients. (Servers
+          may pad the list of records with random instance names, though this introduces more
+          work for clients.)</t>
           <t>Unlinkability: Private service names are unlinkable to post-discovery TLS 
             connections. (Note that if deterministic nonces repeat, servers risk linkability
             across private service names.)</t>
@@ -922,7 +928,7 @@ This draft does not require any IANA action.
 
       <t>Using prefix- and policy-based encryption, service discovery is decomposed into 
         two steps: (1) service announcement and (2) key exchange, similar to 
-        <xref target="I-D.huitema-dnssd-privacy"></xref>. Announcements carry service 
+        <xref target="I-D.ietf-dnssd-privacy"></xref>. Announcements carry service 
         identities, ephemeral key shares, and a signature, all encrypted under the 
         service’s desired policy prefix, e.g., /Alice/Family/*. Upon receipt of an 
         announcement, clients with matching policy private keys can decrypt the 
