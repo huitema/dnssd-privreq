@@ -75,7 +75,7 @@
 
 <front>
     <title abbrev="DNS-SD Privacy Requirements">
-      Privacy Requirements for DNS-SD
+      DNS-SD Privacy and Security Requirements
     </title>
 
    <author fullname="Christian Huitema" initials="C." surname="Huitema">
@@ -124,10 +124,11 @@
 
     <abstract>
         <t>
-DNS-SD (DNS Service Discovery) normally discloses information about both the devices offering services and the devices requesting services.
-This information includes host names, network parameters, and possibly a further description of the corresponding service instance.
-Especially when mobile devices engage in DNS Service Discovery over Multicast DNS at a public hotspot,
-a serious privacy problem arises. We analyze the requirements of a privacy respecting discovery service.
+DNS-SD (DNS Service Discovery) normally discloses information about devices offering and 
+requesting services. This information includes host names, network parameters, and possibly 
+a further description of the corresponding service instance. Especially when mobile devices 
+engage in DNS Service Discovery over Multicast DNS at a public hotspot, serious privacy 
+problems arise. We analyze the requirements of a privacy respecting discovery service.
 </t>
     </abstract>
 </front>
@@ -135,14 +136,12 @@ a serious privacy problem arises. We analyze the requirements of a privacy respe
 <middle>
 <section title="Introduction">
 <t>
-DNS-SD <xref target="RFC6763" /> over mDNS <xref target="RFC6762" /> enables configurationless 
-service discovery in local networks.
-It is very convenient for users, but it requires the public exposure 
-of the offering and requesting identities along with information about the offered and 
-requested services.
-Parts of the published information can seriously breach the user's privacy.
-These privacy issues and potential solutions are discussed in <xref target="KW14a" />,
-<xref target="KW14b" /> and <xref target="K17" />.
+DNS-SD <xref target="RFC6763" /> over mDNS <xref target="RFC6762" /> enables zero-configuration
+service discovery in local networks. It is very convenient for users, but it requires the 
+public exposure of the offering and requesting identities along with information about the 
+offered and requested services. Parts of the published information can seriously breach the 
+user's privacy. These privacy issues and potential solutions are 
+discussed in <xref target="KW14a" />, <xref target="KW14b" /> and <xref target="K17" />.
 </t>
 <t>
 There are cases when nodes connected to a network want to provide
@@ -174,8 +173,32 @@ the host name or service properties.
 </section>
 </section>
 
-<section title="Discovery Scenarios">
+<section title="DNS-SD Discovery Scenarios" anchor="scenarios">
+<t>
+DNS-Based Service Discovery (DNS-SD) is defined in <xref target="RFC6763" />.
+It allows nodes to publish the availability of an instance of a service by
+inserting specific records in the DNS (<xref target="RFC1033"/>,
+<xref target="RFC1034"/>, <xref target="RFC1035"/>) or by publishing
+these records locally using
+multicast DNS (mDNS) <xref target="RFC6762"/>.
+Available services are described using three types of records:
+</t>
+<t>
+<list style="hanging">
+<t hangText="PTR Record:">Associates a service type in the domain with
+an "instance" name of this service type.
+</t>
+<t hangText="SRV Record:">Provides the node name, port number, priority and
+weight associated with the service instance, in conformance with <xref target="RFC2782" />.
+</t>
+<t hangText="TXT Record:">Provides a set of attribute-value pairs describing
+specific properties of the service instance.
+</t>
+</list>
+</t>
 
+<t>In the remaining sections, we review common discovery scenarios provided
+by DNS-SD and discuss their privacy requirements.</t>
 
 <section title="Private client and public server" anchor="privclipubserv" >
 
@@ -318,7 +341,7 @@ wears.
 </t>
 <t>
 In addition to tracking the identity of the owner of the devices, the adversary
-is interested by the characteristics of the devices, such as type, brand and model.
+is interested by the characteristics of the devices, such as type, brand, and model.
 Identifying the type of device can lead to further attacks, from theft to
 device specific hacking. The combination of devices worn by the same person
 will also provide a "fingerprint" of the person, allowing identification.
@@ -326,40 +349,29 @@ will also provide a "fingerprint" of the person, allowing identification.
 </section>
 </section>
 
-<section title="DNS-SD Overview">
-<t>
-DNS-Based Service Discovery (DNS-SD) is defined in <xref target="RFC6763" />.
-It allows nodes to publish the availability of an instance of a service by
-inserting specific records in the DNS (<xref target="RFC1033"/>,
-<xref target="RFC1034"/>, <xref target="RFC1035"/>) or by publishing
-these records locally using
-multicast DNS (mDNS) <xref target="RFC6762"/>.
-Available services are described using three types of records:
-</t>
-<t>
-<list style="hanging">
-<t hangText="PTR Record:">Associates a service type in the domain with
-an "instance" name of this service type.
-</t>
-<t hangText="SRV Record:">Provides the node name, port number, priority and
-weight associated with the service instance, in conformance with <xref target="RFC2782" />.
-</t>
-<t hangText="TXT Record:">Provides a set of attribute-value pairs describing
-specific properties of the service instance.
-</t>
+<section title="Privacy Considerations" anchor="analysis">
+
+<t>The discovery scenarios in Section <xref target="scenarios"/> illustrate three
+separate privacy requirements that vary based on use case:
+<list style="numbers">
+  <t>Client identity privacy: Client identities are not leaked during service discovery
+    or use.</t>
+  <t>Multi-owner, mutual client and server identity privacy: Neither client nor server identities are
+    leaked during service discovery or use.</t>
+  <t>Single-owner, mutual client and server identity privacy: Identities of clients and servers
+    owned and managed by the same application, device, or user are not leaked during
+    service discovery or use.</t>
 </list>
 </t>
 
-<t>In the remaining sections, we review privacy, security, and other operational considerations
-related to publishing instance names, node names, service attributes and other data. </t>
-</section>
+<t>In the remaining subsections, we describe aspects of DNS-SD that make these requirements
+difficult to achieve in practice.</t>
 
-<section title="Privacy Considerations" anchor="analysis">
 <section title="Privacy Implication of Publishing Service Instance Names" anchor="instanceLeak" >
 <t>
-In the first phase of discovery, the client obtains all
-the PTR records associated with a service type in a given naming domain.
-Each PTR record contains a Service Instance Name defined in Section 4 of <xref target="RFC6763" />:
+In the first phase of discovery, client obtain all PTR records associated with a service type 
+in a given naming domain. Each PTR record contains a Service Instance Name defined in Section 
+4 of <xref target="RFC6763" />:
 </t>
 
 <t>
@@ -465,17 +477,17 @@ provide a "fingerprint" of a specific device. Such information includes:
 <t>
 <list style="symbols">
 <t>
-The list of services published by the device, which can be retrieved because the
+List of services published by the device, which can be retrieved because the
 SRV records will point to the same host name.
 </t>
 <t>
-The specific attributes describing these services.
+Specific attributes describing these services.
 </t>
 <t>
-The port numbers used by the services.
+Port numbers used by the services.
 </t>
 <t>
-The values of the priority and weight attributes in the SRV records.
+Priority and weight attributes in the SRV records.
 </t>
 </list>
 </t>
@@ -493,7 +505,7 @@ is futile.
 This argument, however, does not carry much weight because
 <list style="numbers">
 <t>
-proving privacy at the discovery layer is of the essence for enabling automatically configured privacy-preserving
+Proving privacy at the discovery layer is of the essence for enabling automatically configured privacy-preserving
 network applications. Application layer protocols are not forced to leverage the offered privacy,
 but if device tracking is not prevented at the deeper layers, including the service discovery layer,
 obfuscating a certain service's protocol at the application layer is futile.
@@ -547,25 +559,23 @@ analysis can often reveal the service.
   </section>
 
   <section title="Confidentiality">
-    <t>Who can read the information sent in messages?
-    Ideally this should only be the appropriate trusted parties, but
-    it can be hard to define who "the appropriate trusted parties" are.
-    The "Discover" operation in particular is often used to discover
-    new entities that the device did not previously know about.
-    It may be tricky to work out how a device can have an established trust
-    relationship with a new entity it has never previously communicated with.
+    <t>Confidentiality is about restricting information access to only
+      authorized individuals. Ideally this should only be the appropriate 
+      trusted parties, though it can be challenging to define who are "the 
+      appropriate trusted parties." In some uses cases, this may mean that only 
+      mutually authenticated and trusting clients and servers can read messages sent for one another. 
+      The "Discover" operation in particular is often used to discover
+      new entities that the device did not previously know about.
+      It may be tricky to work out how a device can have an established trust
+      relationship with a new entity it has never previously communicated with.
     </t>
   </section>
 
   <section title="Resistance to Dictionary Attacks">
-    <t>It can be tempting to use simple one-way hash functions to obscure
-    sensitive identifiers.
+    <t>It can be tempting to use (publicly computable) hash functions to obscure sensitive identifiers.
     This transforms a sensitive unique identifier such as an email address
-    into a scrambled (but still unique) identifier.
-    Unfortunately simple solutions may be vulnerable to offline
-    dictionary attacks.
-    Given a scrambled unique identifier, it may be possible to do a brute-force attack,
-    trying billions of known and speculative email addresses until a match is found.</t>
+    into a "scrambled" (but still unique) identifier. Unfortunately simple solutions 
+    may be vulnerable to offline dictionary attacks.</t>
   </section>
 
   <section title="Resistance to Denial-of-Service Attack">
