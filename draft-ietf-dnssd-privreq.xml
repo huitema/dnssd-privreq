@@ -106,19 +106,6 @@
         <email>cheshire@apple.com</email>
       </address>
     </author>
-    <author fullname="Christopher A. Wood" initials="C." surname="Wood">
-      <organization>Apple Inc.</organization>
-      <address>
-        <postal>
-          <street>One Apple Park Way</street>
-          <city>Cupertino</city>
-          <code>95014</code>
-          <region>California</region>
-          <country>U.S.A.</country>
-        </postal>
-        <email>cawood@apple.com</email>
-      </address>
-    </author>
 
     <date year="2018" />
 
