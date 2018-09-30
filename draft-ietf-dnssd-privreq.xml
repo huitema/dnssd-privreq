@@ -92,20 +92,6 @@
         <uri>http://privateoctopus.com/</uri>
       </address>
     </author>
-    <author fullname='Stuart Cheshire' initials='S.' surname='Cheshire'>
-      <organization>Apple Inc.</organization>
-      <address>
-        <postal>
-          <street>One Apple Park Way</street>
-          <city>Cupertino</city>
-          <region>California</region>
-          <code>95014</code>
-          <country>U.S.A.</country>
-        </postal>
-        <phone>+1 408 974 3207</phone>
-        <email>cheshire@apple.com</email>
-      </address>
-    </author>
 
     <date year="2018" />
 
