@@ -134,8 +134,8 @@ discover this service, and then connect to it.
 </t>
 <t>
 When analyzing these scenarios in <xref target="analysis"/>, we find that
-the DNS-SD messages leak identifying information such as the instance name,
-the host name or service properties.
+the DNS-SD messages leak identifying information such as the service instance name,
+the host name, or service properties.
 </t>
 <section title="Requirements">
 <t>
@@ -179,7 +179,7 @@ by DNS-SD and discuss their privacy requirements.</t>
 Perhaps the simplest private discovery scenario involves a single client connecting
 to a public server through a public network. A common example would be
 a traveler using a publicly available printer in a business center,
-in an hotel or at an airport.
+in an hotel, or at an airport.
 </t>
 <t>
 <figure>
@@ -222,7 +222,7 @@ should not disclose the identity of the client.
 
 <section title="Private client and private server" anchor="privcliprivserv" >
 <t>
-The second private discovery scenario involves private client connecting
+The second private discovery scenario involves a private client connecting
 to a private server. A common example would be two people engaging
 in a collaborative application in a public place, such as for 
 example an airport's lounge.
@@ -254,8 +254,8 @@ example an airport's lounge.
 </figure>
 </t>
 <t>
-In that scenario, the collaborative application on one of the device will
-act as server, and the application on the other device will act as client.
+In that scenario, the collaborative application on one of the devices will
+act as a server, and the application on the other device will act as a client.
 The server wants to be discovered by the client, but has no desire to
 be discovered by anyone else. The adversary will be listening to
 network traffic, attempting to discover the identity of devices as in
@@ -342,7 +342,7 @@ difficult to achieve in practice.</t>
 
 <section title="Privacy Implication of Publishing Service Instance Names" anchor="instanceLeak" >
 <t>
-In the first phase of discovery, client obtain all PTR records associated with a service type 
+In the first phase of discovery, clients obtain all PTR records associated with a service type 
 in a given naming domain. Each PTR record contains a Service Instance Name defined in Section 
 4 of <xref target="RFC6763" />:
 </t>
@@ -551,7 +551,7 @@ analysis can often reveal the service.
     may be vulnerable to offline dictionary attacks.</t>
   </section>
 
-  <section title="Resistance to Denial-of-Service Attack">
+  <section title="Resistance to Denial-of-Service Attacks">
     <t>In any protocol where the receiver of messages has to perform cryptographic
     operations on those messages, there is a risk of a brute-force flooding
     attack causing the receiver to expend excessive amounts of CPU time
@@ -606,7 +606,7 @@ analysis can often reveal the service.
 
     <t>It is a difficult challenge to design a discovery protocol that has the
     property of obscuring the details of what it is doing from unauthorized
-    observers, while also managing to do that quickly and efficiently.</t>
+    observers, while also managing to do that efficiently.</t>
 
   </section>
 
@@ -620,7 +620,7 @@ analysis can often reveal the service.
     <t>One way to establish trust between two entities is
     to trust a third party to make that determination for us.
     For example, the X.509 certificates used by TLS and HTTPS web browsing
-    are based on the model of trusting a third party to tell us who to trust.
+    are based on the model of trusting a third party to tell us whom to trust.
     There are some difficulties in using this model for establishing
     trust for service discovery uses.
     If we want to print our tax returns or medical documents on "our"
