@@ -151,7 +151,7 @@ the host name, or service properties.
 <t>In this section, we review common service discovery scenarios
     and discuss their privacy requirements.</t>
 
-<section title="Private client and public server" anchor="privclipubserv" >
+<section title="Private Client and Public Server" anchor="privclipubserv" >
 
 <t>
 Perhaps the simplest private discovery scenario involves a single client connecting
@@ -198,7 +198,7 @@ should not disclose the identity of the client.
 </t>
 </section>
 
-<section title="Private client and private server" anchor="privcliprivserv" >
+<section title="Private Client and Private Server" anchor="privcliprivserv" >
 <t>
 The second private discovery scenario involves a private client connecting
 to a private server. A common example would be two people engaging
@@ -247,7 +247,7 @@ should not disclose the identity of either the client or the server.
 </t>
 </section>
 
-<section title="Wearable client and server" anchor="wearcliserv" >
+<section title="Wearable Client and Server" anchor="wearcliserv" >
 <t>
 The third private discovery scenario involves wearable devices.
 A typical example would be the watch on someone's wrist connecting
