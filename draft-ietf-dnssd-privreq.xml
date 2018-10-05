@@ -146,32 +146,10 @@ the host name, or service properties.
 </section>
 </section>
 
-<section title="DNS-SD Discovery Scenarios" anchor="scenarios">
-<t>
-DNS-Based Service Discovery (DNS-SD) is defined in <xref target="RFC6763" />.
-It allows nodes to publish the availability of an instance of a service by
-inserting specific records in the DNS (<xref target="RFC1033"/>,
-<xref target="RFC1034"/>, <xref target="RFC1035"/>) or by publishing
-these records locally using
-multicast DNS (mDNS) <xref target="RFC6762"/>.
-Available services are described using three types of records:
-</t>
-<t>
-<list style="hanging">
-<t hangText="PTR Record:">Associates a service type in the domain with
-an "instance" name of this service type.
-</t>
-<t hangText="SRV Record:">Provides the node name, port number, priority and
-weight associated with the service instance, in conformance with <xref target="RFC2782" />.
-</t>
-<t hangText="TXT Record:">Provides a set of attribute-value pairs describing
-specific properties of the service instance.
-</t>
-</list>
-</t>
+<section title="Service Discovery Scenarios" anchor="scenarios">
 
-<t>In the remaining sections, we review common discovery scenarios provided
-by DNS-SD and discuss their privacy requirements.</t>
+<t>In this section, we review common service discovery scenarios
+    and discuss their privacy requirements.</t>
 
 <section title="Private client and public server" anchor="privclipubserv" >
 
@@ -322,7 +300,7 @@ will also provide a "fingerprint" of the person, allowing identification.
 </section>
 </section>
 
-<section title="Privacy Considerations" anchor="analysis">
+<section title="DNS-SD Privacy Considerations" anchor="analysis">
 
 <t>The discovery scenarios in Section <xref target="scenarios"/> illustrate three
 separate privacy requirements that vary based on use case:
@@ -337,8 +315,32 @@ separate privacy requirements that vary based on use case:
 </list>
 </t>
 
-<t>In the remaining subsections, we describe aspects of DNS-SD that make these requirements
+<t>In the this section, we describe aspects of DNS-SD that make these requirements
 difficult to achieve in practice.</t>
+
+<t>
+DNS-Based Service Discovery (DNS-SD) is defined in <xref target="RFC6763" />.
+It allows nodes to publish the availability of an instance of a service by
+inserting specific records in the DNS (<xref target="RFC1033"/>,
+<xref target="RFC1034"/>, <xref target="RFC1035"/>) or by publishing
+these records locally using
+multicast DNS (mDNS) <xref target="RFC6762"/>.
+Available services are described using three types of records:
+</t>
+<t>
+<list style="hanging">
+<t hangText="PTR Record:">Associates a service type in the domain with
+an "instance" name of this service type.
+</t>
+<t hangText="SRV Record:">Provides the node name, port number, priority and
+weight associated with the service instance, in conformance with <xref target="RFC2782" />.
+</t>
+<t hangText="TXT Record:">Provides a set of attribute-value pairs describing
+specific properties of the service instance.
+</t>
+</list>
+</t>
+
 
 <section title="Privacy Implication of Publishing Service Instance Names" anchor="instanceLeak" >
 <t>
