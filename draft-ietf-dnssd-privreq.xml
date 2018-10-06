@@ -303,7 +303,7 @@ will also provide a "fingerprint" of the person, allowing identification.
 <section title="DNS-SD Privacy Considerations" anchor="analysis">
 
 <t>The discovery scenarios in Section <xref target="scenarios"/> illustrate three
-separate privacy requirements that vary based on use case:
+separate abstract privacy requirements that vary based on the use case:
 <list style="numbers">
   <t>Client identity privacy: Client identities are not leaked during service discovery
     or use.</t>
@@ -316,7 +316,8 @@ separate privacy requirements that vary based on use case:
 </t>
 
 <t>In the this section, we describe aspects of DNS-SD that make these requirements
-difficult to achieve in practice.</t>
+  difficult to achieve in practice.
+</t>
 
 <t>
 DNS-Based Service Discovery (DNS-SD) is defined in <xref target="RFC6763" />.
@@ -640,6 +641,10 @@ analysis can often reveal the service.
     communications are with the same entity.
     In today's world, where there may be attackers present even at that
     first use, it would be preferable to be able to establish a trust relationship
+List of services published by the device, which can be retrieved because the SRV records will point to the same host name.
+Specific attributes describing these services.
+Port numbers used by the services.
+Priority and weight attributes in the SRV records.
     without requiring an initial Leap Of Faith.</t>
 
     <t>Techniques now exist for securely establishing a trust relationship
@@ -685,12 +690,113 @@ analysis can often reveal the service.
   </section>
 </section>
 
-<section title="IANA Considerations" anchor="iana">
-<t> 
-This draft does not require any IANA action.
-</t> 
+<section title="Requirements for a DNS-SD Privacy Extension">
+  <t>
+    Given the considerations discussed in the previous sections, we
+    state requirements for privacy preserving DNS-SD in the following subsections.
+
+    Defining a solution according to these requirements will lead to a solution that
+    does not transmit privacy violating DNS-SD messages and further does not open pathways to new attacks against the
+    operation of DNS-SD.
+    <!-- ; thus fulfilling the abstract privacy requirements stated in <xref target="scenarios" /> and at the beginning of this section. -->
+    However, while this document gives advice on which privacy protecting mechanisms should be used on deeper layer network protocols
+    and on how to actually connect to services in a privacy preserving way, stating corresponding requirements is out of the scope of this document.
+  </t>
+
+  <t>
+    [[TODO: relate to the abstract requirements stated in 2 and the beginning of 3]]
+  </t>
+
+
+  <section title="Client Privacy">
+    <t>
+      For all three scenarios described in <xref target="scenarios" />, client privacy is a requirement.
+      Client privacy, as a requirement, can be subdivided into:
+      <list style="numbers">
+        <t>
+          DNS-SD messages transmitted by clients MUST NOT disclose the client's identity, either directly or via inference,
+          to nodes other than select servers.
+        </t>
+        <t>
+          DNS-SD messages transmitted by clients MUST NOT disclose the client's interest in specific service instances or service types to
+          nodes other than select servers.
+        </t>
+        <t>
+          DNS-SD messages transmitted by clients MUST NOT contain linkable identifiers that allow tracing client devices.
+        </t>
+      </list>
+    </t>
+    <t>
+      DNS-SD, without privacy protection, discloses both service instance names and the service types of the service instances a client is interested in.
+      Further, clients using DNS-SD disclose their host name and network parameters.
+    </t>
+  </section>
+
+  <section title="Server Privacy">
+    <t>
+      Scenarios 2 and 3, further have server privacy as a requirement, which can be subdivided into:
+    </t>
+    <t>
+      <list style="numbers">
+        <t>
+          Servers MUST neither publish their true hostnames nor any static substitute.
+          Published host names must be randomly chosen as stated in <xref target="RFC8117" />.
+          This needs to be heeded for both SRV service records and A/AAAA service records.
+        </t>
+        <t>
+          Servers MUST NOT disclose service instance names of offered services to unauthorized clients.
+        </t>
+        <t>
+          Servers MUST NOT disclose information about about the services they offer to unauthorized clients.
+        </t>
+      </list>
+    </t>
+    <t>
+      Offering services via DNS-SD, servers typically disclose their hostnames (SRV, A/AAAA), instance names of 
+      offered services (PRT, SRV), and information about services (TXT).
+      Heeding all three service privacy requirements makes servers immune to fingerprinting attacks on the DNS-SD level.
+    </t>
+
+    <t>
+    [[TODO: what about the service type? Declaring protecting the service type as a MUST might be to strict.]]
+    </t>
+  </section>
+
+  <section title="Security and Operation">
+    <t>
+      In order to be secure and feasible, a DNS-SD privacy extension must also heed the following
+      security and operational requirements.
+    </t>
+    <t>
+      All scenarios require:
+      <list style="numbers">
+        <t>
+          DoS resistance: The privacy protecting measures added to DNS-SD MUST neither add a significant CPU overhead on nodes,
+          nor cause significantly higher network load. Further, amplification attacks MUST NOT be allowed.
+        </t>
+      </list>
+    </t>
+    <t>
+      [[TODO: should we also state further security requirements? Authenticity, Integrity, Confidentiality?
+      Authenticity and confidentiality are already implicitly contained in the privacy requirements.
+      Should we state a freshness requirement?
+      Requirements for the pairing system should be in the pairing draft.
+      Authenticity is a MUST for scenarios 2 and 3.
+      One difference between scenarios 2 and 3 which we should mention is that
+      while mutual private authentication is a MUST in scenario 2
+      it is not in scenario 3.
+      Scenario 1 can work without authentication.
+      ]]
+    </t>
+  </section>
 </section>
 
+<section title="IANA Considerations" anchor="iana">
+<t>
+This draft does not require any IANA action.
+</t>
+
+</section>
 <section title="Acknowledgments">
     <t>This draft incorporates many contributions from Stuart Cheshire and Chris Wood.
     </t>
@@ -699,9 +805,7 @@ This draft does not require any IANA action.
 </middle>
 
 <back>
-  
 <references title="Informative References">
-
   &rfc2119;
   &rfc6763;
   &rfc1033;
