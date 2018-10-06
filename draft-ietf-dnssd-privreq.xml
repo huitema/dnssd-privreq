@@ -93,6 +93,21 @@
       </address>
     </author>
 
+   <author fullname="Daniel Kaiser" initials="D." surname="Kaiser">
+      <organization>University of Luxembourg</organization>
+      <address>
+        <postal>
+          <street>6, avenue de la Fonte</street>
+          <city>Esch-sur-Alzette</city>
+          <code>4364</code>
+          <region></region>
+          <country>Luxembourg</country>
+        </postal>
+        <email>daniel.kaiser@uni.lu</email>
+        <uri>https://secan-lab.uni.lu/</uri>
+      </address>
+    </author>
+
     <date year="2018" />
 
     <abstract>
