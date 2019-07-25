@@ -654,10 +654,6 @@ analysis can often reveal the service.
     communications are with the same entity.
     In today's world, where there may be attackers present even at that
     first use, it would be preferable to be able to establish a trust relationship
-List of services published by the device, which can be retrieved because the SRV records will point to the same host name.
-Specific attributes describing these services.
-Port numbers used by the services.
-Priority and weight attributes in the SRV records.
     without requiring an initial Leap Of Faith.</t>
 
     <t>Techniques now exist for securely establishing a trust relationship
@@ -705,9 +701,14 @@ Priority and weight attributes in the SRV records.
 
 <section title="Requirements for a DNS-SD Privacy Extension">
   <t>
+    [[TODO: discuss whether this section is in fact necessary. It comes close to making design decisions,
+    something that we should try to avoid in this document.]]
+  </t> 
+  <t>
     Given the considerations discussed in the previous sections, we
     state requirements for privacy preserving DNS-SD in the following subsections.
-
+  </t>
+  <t>
     Defining a solution according to these requirements will lead to a solution that
     does not transmit privacy violating DNS-SD messages and further does not open pathways to new attacks against the
     operation of DNS-SD.
@@ -721,7 +722,7 @@ Priority and weight attributes in the SRV records.
   </t>
 
 
-  <section title="Client Privacy">
+  <section title="Private Client requirements">
     <t>
       For all three scenarios described in <xref target="scenarios" />, client privacy is a requirement.
       Client privacy, as a requirement, can be subdivided into:
@@ -745,16 +746,22 @@ Priority and weight attributes in the SRV records.
     </t>
   </section>
 
-  <section title="Server Privacy">
+  <section title="Private Server Requirements">
     <t>
-      Scenarios 2 and 3, further have server privacy as a requirement, which can be subdivided into:
+      Servers like the "printer" discussed in scenario 1 are public, but the servers
+      discussed in scenarios 2 and 3 are by essence private. Private servers have server privacy as a requirement,
+      which can be subdivided into:
     </t>
     <t>
       <list style="numbers">
         <t>
-          Servers MUST neither publish their true hostnames nor any static substitute.
-          Published host names must be randomly chosen as stated in <xref target="RFC8117" />.
-          This needs to be heeded for both SRV service records and A/AAAA service records.
+          Servers MUST neither publish static identifiers such as host names or service names.
+          When those fields are required by the protocol, servers should publish randomized
+          values. (See <xref target="RFC8117" /> for a discussion of host names.).
+        </t>
+        <t>
+          Servers MUST use privacy options available at lower layers, and for example avoid publishing
+          static IPv4 or IPv6 addresses, or static IEEE 802 MAC addresses.
         </t>
         <t>
           Servers MUST NOT disclose service instance names of offered services to unauthorized clients.
