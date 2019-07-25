@@ -51,8 +51,6 @@
    "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tls-tls13.xml">
 <!ENTITY I-D.ietf-dnssd-push PUBLIC ''  
    "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnssd-push">
-<!ENTITY I-D.ietf-dnssd-pairing PUBLIC ''  
-   "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnssd-pairing">
 <!ENTITY kw14a PUBLIC ''
    "references/reference.kw14a.xml">
 <!ENTITY kw14b PUBLIC ''
@@ -70,7 +68,7 @@
 <?rfc inline='yes' ?>
 
 <rfc category="info" 
-     docName="draft-ietf-dnssd-prireq-01"
+     docName="draft-ietf-dnssd-prireq-02"
      ipr="trust200902">
 
 <front>
@@ -108,7 +106,7 @@
       </address>
     </author>
 
-    <date year="2018" />
+    <date year="2019" />
 
     <abstract>
         <t>
@@ -790,18 +788,6 @@ Priority and weight attributes in the SRV records.
           nor cause significantly higher network load. Further, amplification attacks MUST NOT be allowed.
         </t>
       </list>
-    </t>
-    <t>
-      [[TODO: should we also state further security requirements? Authenticity, Integrity, Confidentiality?
-      Authenticity and confidentiality are already implicitly contained in the privacy requirements.
-      Should we state a freshness requirement?
-      Requirements for the pairing system should be in the pairing draft.
-      Authenticity is a MUST for scenarios 2 and 3.
-      One difference between scenarios 2 and 3 which we should mention is that
-      while mutual private authentication is a MUST in scenario 2
-      it is not in scenario 3.
-      Scenario 1 can work without authentication.
-      ]]
     </t>
   </section>
 </section>
