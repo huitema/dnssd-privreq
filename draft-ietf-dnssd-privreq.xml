@@ -494,7 +494,7 @@ is futile.
 This argument, however, does not carry much weight because
 <list style="numbers">
 <t>
-Proving privacy at the discovery layer is of the essence for enabling automatically configured privacy-preserving
+Providing privacy at the discovery layer is of the essence for enabling automatically configured privacy-preserving
 network applications. Application layer protocols are not forced to leverage the offered privacy,
 but if device tracking is not prevented at the deeper layers, including the service discovery layer,
 obfuscating a certain service's protocol at the application layer is futile.
@@ -722,7 +722,7 @@ analysis can often reveal the service.
   </t>
 
 
-  <section title="Private Client requirements">
+  <section title="Private Client Requirements">
     <t>
       For all three scenarios described in <xref target="scenarios" />, client privacy is a requirement.
       Client privacy, as a requirement, can be subdivided into:
