@@ -182,6 +182,21 @@ the host name, or service properties.
 </section>
 </section>
 
+<section title="Threat Model" anchor="threatmodel">
+<t>
+  This document considers the following attacker types.
+</t>
+<t>
+  External
+</t>
+<t>
+  On-Link
+</t>
+<t>
+  MiTM: passive / active
+</t>
+</section>
+
 <section title="Service Discovery Scenarios" anchor="scenarios">
 
 <t>In this section, we review common service discovery scenarios
