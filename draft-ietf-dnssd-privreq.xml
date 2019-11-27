@@ -150,12 +150,35 @@ When analyzing these scenarios in <xref target="analysis"/>, we find that
 the DNS-SD messages leak identifying information such as the service instance name,
 the host name, or service properties.
 </t>
-<section title="Requirements">
+
+<section title="Terminology">
 <t>
   The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
   "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
   document are to be interpreted as described in <xref target="RFC2119" />.
 </t>
+
+<t>
+<list style="hanging">
+<t hangText="Identity">
+  In this document, the term "identity" refers to the identity of the entitiy (legal person)
+  operating a device.
+</t>
+<t hangText="Disclosing an Identity">
+  In this document "disclosing an identiy" means showing the identity of operating entities
+  to devices external to the discovery process; e.g., devices on the same network link that are listening to the
+  network traffic but are not actually involved in the discovery process.
+  This document focuses on identity disclosure by data conveyed via messages on the service discovery protocol layer.
+  Still, identity leaks on deeper layers, e.g., the IP layer, are mentioned.
+</t>
+<t hangText="Disclosing Information">
+  In this document "disclosing information" is also focused
+  on disclosure by data conveyed via messages on the service discovery protocol layer.
+</t>
+</list>
+</t>
+
+
 </section>
 </section>
 
