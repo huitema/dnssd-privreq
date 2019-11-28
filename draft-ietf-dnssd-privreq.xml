@@ -222,7 +222,8 @@ the host name, or service properties.
 <section title="Service Discovery Scenarios" anchor="scenarios">
 
 <t>In this section, we review common service discovery scenarios
-    and discuss their privacy requirements.</t>
+  and discuss privacy threats and their privacy requirements.
+  In all three of these common scenarios the attacker is of the type passive on-link.</t>
 
 <section title="Private Client and Public Server" anchor="privclipubserv" >
 
