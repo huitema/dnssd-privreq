@@ -737,10 +737,7 @@ analysis can often reveal the service.
 </section>
 
 <section title="Requirements for a DNS-SD Privacy Extension">
-  <t>
-    [[TODO: discuss whether this section is in fact necessary. It comes close to making design decisions,
-    something that we should try to avoid in this document.]]
-  </t> 
+
   <t>
     Given the considerations discussed in the previous sections, we
     state requirements for privacy preserving DNS-SD in the following subsections.
@@ -748,14 +745,10 @@ analysis can often reveal the service.
   <t>
     Defining a solution according to these requirements will lead to a solution that
     does not transmit privacy violating DNS-SD messages and further does not open pathways to new attacks against the
-    operation of DNS-SD.
-    <!-- ; thus fulfilling the abstract privacy requirements stated in <xref target="scenarios" /> and at the beginning of this section. -->
-    However, while this document gives advice on which privacy protecting mechanisms should be used on deeper layer network protocols
-    and on how to actually connect to services in a privacy preserving way, stating corresponding requirements is out of the scope of this document.
-  </t>
-
-  <t>
-    [[TODO: relate to the abstract requirements stated in 2 and the beginning of 3]]
+    operation of DNS-SD. However, while this document gives advice on which
+    privacy protecting mechanisms should be used on deeper layer network
+    protocols and on how to actually connect to services in a privacy
+    preserving way, stating corresponding requirements is out of the scope of this document.
   </t>
 
 
@@ -804,7 +797,7 @@ analysis can often reveal the service.
           Servers MUST NOT disclose service instance names of offered services to unauthorized clients.
         </t>
         <t>
-          Servers MUST NOT disclose information about about the services they offer to unauthorized clients.
+          Servers MUST NOT disclose information about the services they offer to unauthorized clients.
         </t>
       </list>
     </t>
@@ -812,10 +805,6 @@ analysis can often reveal the service.
       Offering services via DNS-SD, servers typically disclose their hostnames (SRV, A/AAAA), instance names of 
       offered services (PRT, SRV), and information about services (TXT).
       Heeding all three service privacy requirements makes servers immune to fingerprinting attacks on the DNS-SD level.
-    </t>
-
-    <t>
-    [[TODO: what about the service type? Declaring protecting the service type as a MUST might be to strict.]]
     </t>
   </section>
 
