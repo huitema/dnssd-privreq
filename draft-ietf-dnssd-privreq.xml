@@ -764,6 +764,22 @@ analysis can often reveal the service.
   </section>
 </section>
 
+<section title="Generalizing...">
+<t>
+  TODO
+</t>
+<section title="DNS Server">
+<t>
+  TODO
+</t>
+</section>
+<section title="Multilink">
+<t>
+  RFC 7558
+</t>
+</section>
+</section>
+
 </section>
 
 <section title="Requirements for a DNS-SD Privacy Extension">
