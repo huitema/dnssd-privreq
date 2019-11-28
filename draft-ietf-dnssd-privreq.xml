@@ -375,11 +375,7 @@ will also provide a "fingerprint" of the person, allowing identification.
 </section>
 
 
-<section title="List Threats...." anchor="threats">
 
-</section>
-
-</section>
 
 <section title="DNS-SD Privacy Considerations" anchor="analysis">
 
@@ -765,6 +761,8 @@ analysis can often reveal the service.
     to external dependencies. Where possible, such dependencies should be minimized. 
     Local trust models are best for secure initialization in the presence of active attackers.</t>
   </section>
+</section>
+
 </section>
 
 <section title="Requirements for a DNS-SD Privacy Extension">
