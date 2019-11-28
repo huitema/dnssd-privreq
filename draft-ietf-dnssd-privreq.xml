@@ -182,20 +182,34 @@ the host name, or service properties.
 </section>
 
 <section title="Threat Model" anchor="threatmodel">
+
 <t>
   This document considers the following attacker types.
+  All these attackers can either be passive, i.e. they just listen to network traffic they have access to,
+  or active, i.e. they can send (malicious) packets.
 </t>
+
 <t>
-  External
+<list style="hanging">
+<t hangText="external">
+  An external attacker is not on the same network link as victim devices engaging in service discovery;
+  thus, the external attacker in a different multicast domain.
 </t>
-<t>
-  On-Link
+<t hangText="on-link">
+  An on-link attacker is on the same network link as viction devices engaging in service discovery;
+  thus, the external attacker is in the same multicast domain.
 </t>
-<t>
-  MiTM: passive / active
+<t hangText="MITM">
+  A Man in the Middle (MITM) attacker either controls (parts of) a network link
+  or can trick two parties to send traffic via him;
+  thus, the MITM attacker has access to unicast traffic between devices engaging in service discovery.
 </t>
+</list>
+</t>
+
 </section>
 
+<section title="Threat Analysis" anchor="threatanalysis">
 <section title="Service Discovery Scenarios" anchor="scenarios">
 
 <t>In this section, we review common service discovery scenarios
@@ -348,6 +362,13 @@ device specific hacking. The combination of devices worn by the same person
 will also provide a "fingerprint" of the person, allowing identification.
 </t>
 </section>
+</section>
+
+
+<section title="List Threats...." anchor="threats">
+
+</section>
+
 </section>
 
 <section title="DNS-SD Privacy Considerations" anchor="analysis">
