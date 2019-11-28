@@ -196,7 +196,7 @@ the host name, or service properties.
   thus, the external attacker in a different multicast domain.
 </t>
 <t hangText="on-link">
-  An on-link attacker is on the same network link as viction devices engaging in service discovery;
+  An on-link attacker is on the same network link as victim devices engaging in service discovery;
   thus, the external attacker is in the same multicast domain.
 </t>
 <t hangText="MITM">
@@ -210,6 +210,13 @@ the host name, or service properties.
 </section>
 
 <section title="Threat Analysis" anchor="threatanalysis">
+
+<t>
+  In this section we analyse how the attackers described in the previous section
+  might threaten the privacy of devices engaging in service discovery.
+  We focus on attacks against devices' privacy leveraging data transmitted in service discovery protocol messages.
+</t>
+
 <section title="Service Discovery Scenarios" anchor="scenarios">
 
 <t>In this section, we review common service discovery scenarios
