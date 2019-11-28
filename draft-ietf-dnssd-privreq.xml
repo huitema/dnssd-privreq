@@ -45,10 +45,9 @@
 <!ENTITY rfc8236 PUBLIC ''
    'http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8236.xml'>
 
-<!ENTITY I-D.ietf-intarea-hostname-practice PUBLIC ''
-   "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-intarea-hostname-practice.xml"> 
-<!ENTITY I-D.ietf-tls-tls13 PUBLIC ''  
-   "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tls-tls13.xml">
+<!ENTITY rfc8446 PUBLIC ''
+   'http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.8446.xml'>
+
 <!ENTITY I-D.ietf-dnssd-push PUBLIC ''  
    "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnssd-push">
 <!ENTITY kw14a PUBLIC ''
