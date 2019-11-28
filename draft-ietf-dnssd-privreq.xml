@@ -394,6 +394,7 @@ separate abstract privacy requirements that vary based on the use case:
 
 <t>In this section, we describe aspects of DNS-SD that make these requirements
   difficult to achieve in practice.
+  If not addressed properly, the passive on-link attacker (see <xref target="threatmodel"/>) can thwart these requirements.
 </t>
 
 <t>
@@ -465,7 +466,7 @@ and uses a chat application supporting the
 _presence protocol on both of her devices. She might currently chat with Bob or Carol, 
 as they are also using a _presence supporting chat application.
 This information is not just available to devices actively browsing for and offering 
-services, but to anybody passively listening to the network traffic.
+services, but to anybody passively listening to the network traffic, i.e. a passive on-link attacker.
 </t>
 </section>
 
