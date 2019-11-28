@@ -184,9 +184,9 @@ the host name, or service properties.
 <section title="Threat Model" anchor="threatmodel">
 
 <t>
-  This document considers the following attacker types.
+  This document considers the following attacker types sorted by increasing power.
   All these attackers can either be passive, i.e. they just listen to network traffic they have access to,
-  or active, i.e. they can send (malicious) packets.
+  or active, i.e. they additionally can send (malicious) packets.
 </t>
 
 <t>
@@ -198,11 +198,13 @@ the host name, or service properties.
 <t hangText="on-link">
   An on-link attacker is on the same network link as victim devices engaging in service discovery;
   thus, the external attacker is in the same multicast domain.
+  This attacker can also mount all attacks an external attacker can mount.
 </t>
 <t hangText="MITM">
   A Man in the Middle (MITM) attacker either controls (parts of) a network link
   or can trick two parties to send traffic via him;
   thus, the MITM attacker has access to unicast traffic between devices engaging in service discovery.
+  This attacker can also mount all attacks an on-link attacker can mount.
 </t>
 </list>
 </t>
