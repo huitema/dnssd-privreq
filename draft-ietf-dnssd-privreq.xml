@@ -186,7 +186,7 @@ the host name, or service properties.
 <t>
   This document considers the following attacker types sorted by increasing power.
   All these attackers can either be passive, i.e. they just listen to network traffic they have access to,
-  or active, i.e. they additionally can send (malicious) packets.
+  or active, i.e. they additionally can craft and send (malicious) packets.
 </t>
 
 <t>
@@ -215,7 +215,7 @@ the host name, or service properties.
 
 <t>
   In this section we analyse how the attackers described in the previous section
-  might threaten the privacy of devices engaging in service discovery.
+  might threaten the privacy of legal persons operating devices engaging in service discovery.
   We focus on attacks against devices' privacy leveraging data transmitted in service discovery protocol messages.
 </t>
 
