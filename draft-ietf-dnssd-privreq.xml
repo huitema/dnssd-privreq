@@ -246,7 +246,7 @@ in an hotel, or at an airport.
                                                   o
          ___                                        o   ___
         /   \                                         _|___|_
-        |   |                                          |* *|
+        |   |   client                server           |* *|
          \_/      __                                    \_/
           |      / /   Discovery   +----------+          |
          /|\    /_/  &lt;-----------&gt; |  +----+  |         /|\
@@ -258,7 +258,8 @@ in an hotel, or at an airport.
        /     \                                        /     \
       /       \                                      /       \
      /         \                                    /         \
-
+                                                    
+        David                                        adversary
 </artwork>
 </figure>
 </t>
@@ -292,7 +293,7 @@ example an airport's lounge.
                                                      o
          ___                               ___         o   ___
         /   \                             /   \          _|___|_
-        |   |                             |   |           |* *|
+        |   |   server          client    |   |           |* *|
          \_/      __               __      \_/             \_/
           |      / /   Discovery   \ \      |               |
          /|\    /_/  &lt;-----------&gt;  \_\    /|\             /|\
@@ -305,6 +306,7 @@ example an airport's lounge.
       /       \                         /       \       /       \
      /         \                       /         \     /         \
 
+       David                              Stuart        Adversary
 </artwork>
 </figure>
 </t>
@@ -341,7 +343,7 @@ to the phone in their pocket.
                                                    o
          ___                                         o  ___
         /   \                                         _|___|_
-        |   |                                          |* *|
+        |   |   client                                 |* *|
          \_/                                            \_/
           |     _/                                       |
          /|\   //                                       /|\
@@ -349,11 +351,12 @@ to the phone in their pocket.
        /  |__     | Discovery                         /  |  \
       /   |\ \    v                                  /   |   \
          / \\_\                                         / \
-        /   \                                          /   \
+        /   \   server                                 /   \
        /     \                                        /     \
       /       \                                      /       \
      /         \                                    /         \
 
+        David                                        Adversary
 </artwork>
 </figure>
 </t>
