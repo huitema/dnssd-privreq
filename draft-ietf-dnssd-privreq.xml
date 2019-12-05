@@ -578,8 +578,7 @@ sufficient to identify the specific device.
 <t>
 A sometimes heard argument is that devices providing services can be identified
 by observing the local traffic, and that trying to hide the presence of the service
-is futile.
-This argument, however, does not carry much weight because
+is futile. However,
 <list style="numbers">
 <t>
 Providing privacy at the discovery layer is of the essence for enabling automatically configured privacy-preserving
@@ -588,11 +587,12 @@ but if device tracking is not prevented at the deeper layers, including the serv
 obfuscating a certain service's protocol at the application layer is futile.
 </t>
 <t>
-Further, even if the application layer does not protect privacy,
-it is hard to record and analyse the unicast traffic (which most applications will generate)
-compared to just listening to the multicast messages sent by DNS-SD/mDNS.
+Further, in the case of mDNS based discovery, even if the application layer does not protect privacy,
+typically services are provided via unicast which requires a MITM attacker,
+while identifying services based on multicast discovery messages just requires an on-link attacker.
 </t>
 </list>
+
 The same argument can be extended to say that the pattern of services
 offered by a device allows for fingerprinting the device. This may or may not
 be true, since we can expect that services will be designed or updated to
