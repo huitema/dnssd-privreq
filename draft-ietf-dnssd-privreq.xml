@@ -819,7 +819,7 @@ analysis can often reveal the service.
           nodes other than select servers.
         </t>
         <t>
-          DNS-SD messages transmitted by clients MUST NOT contain linkable identifiers that allow tracing client devices.
+          DNS-SD messages transmitted by clients MUST NOT contain linkable identifiers that allow tracing and/or fingerprinting client devices.
         </t>
       </list>
     </t>
