@@ -383,7 +383,7 @@ will also provide a "fingerprint" of the person, allowing identification.
 <section title="DNS-SD Privacy Considerations" anchor="analysis">
 
 <t>
-  While the discovery process in the scenarios described in <xref target="threatmodel"/> most likely
+  While the discovery process illustrated in the scenarios in <xref target="threatmodel"/> most likely
   would be based on <xref target="RFC6762" /> as a means for making service information available,
   this document considers all kinds of means for making DNS-SD resource records available.
   These means comprise but are not limited to mDNS <xref target="RFC6762" />,
@@ -391,7 +391,7 @@ will also provide a "fingerprint" of the person, allowing identification.
   e.g. using SRP <xref target="I-D.ietf-dnssd-srp"/>, and multi-link <xref target="RFC7558"/> networks.
 </t>
 
-<t>The discovery scenarios in Section <xref target="scenarios"/> illustrate three
+<t>The discovery scenarios in <xref target="scenarios"/> illustrate three
 separate abstract privacy requirements that vary based on the use case (and are not limited to mDNS):
 <list style="numbers">
   <t>Client identity privacy: Client identities are not leaked during service discovery
