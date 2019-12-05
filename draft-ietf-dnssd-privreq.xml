@@ -861,7 +861,7 @@ analysis can often reveal the service.
     <t>
       Offering services via DNS-SD, servers typically disclose their hostnames (SRV, A/AAAA), instance names of 
       offered services (PRT, SRV), and information about services (TXT).
-      Heeding all three service privacy requirements makes servers immune to fingerprinting attacks on the DNS-SD level.
+      Heeding these requirements protects a server's privacy on the DNS-SD level.
     </t>
   </section>
 
