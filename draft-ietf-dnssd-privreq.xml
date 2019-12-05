@@ -824,6 +824,10 @@ analysis can often reveal the service.
       </list>
     </t>
     <t>
+      Privacy solutions fulfilling these requirements MUST be resilient to fingerprinting attacks <xref target="serverFingerprint"/> that
+      could be used for breaching these requirements.
+    </t>
+    <t>
       DNS-SD, without privacy protection, discloses both service instance names and the service types of the service instances a client is interested in.
       Further, clients using DNS-SD disclose their host name and network parameters.
     </t>
