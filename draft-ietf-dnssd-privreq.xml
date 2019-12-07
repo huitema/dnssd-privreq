@@ -395,7 +395,7 @@ will also provide a "fingerprint" of the person, allowing identification.
 </t>
 
 <t>The discovery scenarios in <xref target="scenarios"/> illustrate three
-separate abstract privacy requirements that vary based on the use case (and are not limited to mDNS):
+separate abstract privacy requirements that vary based on the use case. These are not limited to mDNS.
 <list style="numbers">
   <t>Client identity privacy: Client identities are not leaked during service discovery
     or use.</t>
@@ -663,7 +663,7 @@ analysis can often reveal the service.
   <section title="Resistance to Dictionary Attacks">
     <t>It can be tempting to use (publicly computable) hash functions to obscure sensitive identifiers.
     This transforms a sensitive unique identifier such as an email address
-    into a "scrambled" (but still unique) identifier. Unfortunately simple solutions 
+    into a "scrambled" but still unique identifier. Unfortunately simple solutions 
     may be vulnerable to offline dictionary attacks.</t>
   </section>
 
@@ -671,7 +671,7 @@ analysis can often reveal the service.
     <t>In any protocol where the receiver of messages has to perform cryptographic
     operations on those messages, there is a risk of a brute-force flooding
     attack causing the receiver to expend excessive amounts of CPU time
-    (and battery power) just processing and discarding those messages.</t>
+    and, where appliciable, battery power just processing and discarding those messages.</t>
 
   <t>
     Also, amplification attacks have to be taken into consideration.
@@ -702,8 +702,8 @@ analysis can often reveal the service.
     to a proxy, which will act on behalf of the device for some functions,
     while the device itself goes to sleep to reduce power consumption.
     When the proxy determines that some action is required which only
-    the device itself can perform, the proxy may have some way
-    (such as Ethernet "Magic Packet") to wake the device.</t>
+    the device itself can perform, the proxy may have some way,
+    such as Ethernet "Magic Packet", to wake the device.</t>
 
     <t>In many cases, the device may not trust the network proxy
     sufficiently to share all its confidential key material with the proxy.
@@ -720,10 +720,10 @@ analysis can often reveal the service.
     properties may result in a design that is not efficient.
     To perform the necessary operations the protocol may
     need to send and receive a large number of network packets.
-    This may consume an unreasonable amount of network capacity
-    (particularly problematic when it is a shared wireless spectrum),
-    cause an unnecessary level of power consumption
-    (particularly problematic on battery devices)
+    This may consume an unreasonable amount of network capacity,
+    particularly problematic when it is a shared wireless spectrum.
+    Further it may cause an unnecessary level of power consumption
+    which is particularly problematic on battery devices,
     and may result in the discovery process being slow.</t>
 
     <t>It is a difficult challenge to design a discovery protocol that has the
@@ -780,17 +780,19 @@ analysis can often reveal the service.
     It removes the human fallibility element from the equation,
     and avoids the human users inadvertently sabotaging their own security.</t>
 
-    <t>Using these techniques, if a user tries to print their tax return
-    on a printer they’ve never used before (even though the name looks right)
-    they’ll be prompted to enter a pairing PIN, and the user
-    *cannot* ignore that warning. They can’t just press an “OK” button.
+  <t>
+    Without these techniques, users who try to print their tax return on
+    a printer they've never used before will be tempted to just go ahead
+    if the name looks right. With these techniques they'll be prompted to
+    enter a pairing PIN, and *cannot* ignore that warning.
+    They can’t just press an “OK” button.
     They have to walk to the printer and read the displayed PIN and enter it.
     And if the intended printer is not displaying a pairing PIN, or is displaying
     a different pairing PIN, that means the user may be being spoofed,
     and the connection will not succeed, and the failure will not reveal
     any secret information to the attacker.
-    As much as the human desires to "just give me an OK button to make it print"
-    (and the attacker desires them to click that OK button too)
+    As much as the human desires to "just give me an OK button to make it print",
+    and the attacker desires them to click that OK button, too,
     the cryptographic algorithms do not give the user the ability to opt
     out of the security, and consequently do not give the attacker
     any way to persuade the user to opt out of the security protections.</t>
