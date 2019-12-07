@@ -672,6 +672,12 @@ analysis can often reveal the service.
     operations on those messages, there is a risk of a brute-force flooding
     attack causing the receiver to expend excessive amounts of CPU time
     (and battery power) just processing and discarding those messages.</t>
+
+  <t>
+    Also, amplification attacks have to be taken into consideration.
+    Messages with larger payloads should only be sent as an answer to
+    a query sent by a verified client.
+  </t>
   </section>
 
   <section title="Resistance to Sender Impersonation">
