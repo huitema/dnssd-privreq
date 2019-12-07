@@ -196,7 +196,7 @@ the host name, or service properties.
 <list style="hanging">
 <t hangText="external">
   An external attacker is not on the same network link as victim devices engaging in service discovery;
-  thus, the external attacker in a different multicast domain.
+  thus, the external attacker is in a different multicast domain.
 </t>
 <t hangText="on-link">
   An on-link attacker is on the same network link as victim devices engaging in service discovery;
@@ -219,7 +219,7 @@ the host name, or service properties.
 <t>
   In this section we analyse how the attackers described in the previous section
   might threaten the privacy of legal persons operating devices engaging in service discovery.
-  We focus on attacks against devices' privacy leveraging data transmitted in service discovery protocol messages.
+  We focus on attacks leveraging data transmitted in service discovery protocol messages.
 </t>
 
 <section title="Service Discovery Scenarios" anchor="scenarios">
@@ -363,16 +363,16 @@ to the phone in their pocket.
 <t>
 This third scenario is in many ways similar to the second scenario. It involves
 two devices, one acting as server and the other acting as client, and it
-leads to the same requirement that the discovery traffic not disclose the
+leads to the same requirement of the discovery traffic not disclosing the
 identity of either the client or the server. The main difference is that
 the devices are managed by a single owner, which can lead to different
-methods for establishing secure relations between the device. There is
-also an added emphasis in hiding the type of devices that the person
+methods for establishing secure relations between the devices. There is
+also an added emphasis on hiding the type of devices that the person
 wears.
 </t>
 <t>
 In addition to tracking the identity of the owner of the devices, the adversary
-is interested by the characteristics of the devices, such as type, brand, and model.
+is interested in the characteristics of the devices, such as type, brand, and model.
 Identifying the type of device can lead to further attacks, from theft to
 device specific hacking. The combination of devices worn by the same person
 will also provide a "fingerprint" of the person, allowing identification.
@@ -420,7 +420,7 @@ separate abstract privacy requirements that vary based on the use case (and are 
 </t>
 
 <t>
-  Server identity privacy can be thwarted by a passive attacker in the same way as client identify privacy.
+  Server identity privacy can be thwarted by a passive attacker in the same way as client identity privacy.
   Additionally, active attackers querying for information have to be taken into consideration as well.
   This is mainly relevant for unicast based discovery, where listening to discovery traffic requires a
   MITM attacker; however, an external active attacker might be able to learn the server identity by just querying for
@@ -721,7 +721,7 @@ analysis can often reveal the service.
     To perform the necessary operations the protocol may
     need to send and receive a large number of network packets.
     This may consume an unreasonable amount of network capacity
-    (particularly problematic when it's shared wireless spectrum),
+    (particularly problematic when it is a shared wireless spectrum),
     cause an unnecessary level of power consumption
     (particularly problematic on battery devices)
     and may result in the discovery process being slow.</t>
@@ -842,7 +842,7 @@ analysis can often reveal the service.
       </list>
     </t>
     <t>
-      Privacy solutions fulfilling these requirements MUST be resilient to fingerprinting attacks <xref target="serverFingerprint"/> that
+      Privacy solutions fulfilling these requirements MUST be resilient to fingerprinting attacks (see <xref target="serverFingerprint"/>) that
       could be used for breaching these requirements.
     </t>
     <t>
@@ -862,7 +862,7 @@ analysis can often reveal the service.
         <t>
           Servers MUST neither publish static identifiers such as host names or service names.
           When those fields are required by the protocol, servers should publish randomized
-          values. (See <xref target="RFC8117" /> for a discussion of host names.).
+          values. (See <xref target="RFC8117" /> for a discussion of host names.)
         </t>
         <t>
           Servers MUST use privacy options available at lower layers, and for example avoid publishing
