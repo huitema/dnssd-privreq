@@ -889,7 +889,9 @@ This draft does not require any IANA action.
 
 </section>
 <section title="Acknowledgments">
-    <t>This draft incorporates many contributions from Stuart Cheshire and Chris Wood.
+    <t>This draft incorporates many contributions from Stuart Cheshire and Chris Wood. Thanks to
+       Florian Adamsky for extensive review and suggestions on the organization of the threat
+       model.
     </t>
 </section>
 
