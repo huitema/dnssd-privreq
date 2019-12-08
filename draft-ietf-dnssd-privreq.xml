@@ -861,6 +861,19 @@ analysis can often reveal the service.
     </t>
     <t>
       <list style="numbers">
+         <t>
+          DNS-SD messages transmitted by servers MUST NOT disclose the servers's identity, either directly or via inference,
+          to nodes other than authorized clients.
+        </t>
+        <t>
+          DNS-SD messages transmitted by servers MUST NOT disclose service instance names of offered services to unauthorized clients.
+        </t>
+        <t>
+          DNS-SD messages transmitted by servers MUST NOT disclose information about the services they offer to unauthorized clients.
+        </t>
+        <t>
+          DNS-SD messages transmitted by servers MUST NOT contain linkable identifiers that allow tracing servers.
+        </t>
         <t>
           Servers MUST neither publish static identifiers such as host names or service names.
           When those fields are required by the protocol, servers should publish randomized
@@ -870,13 +883,7 @@ analysis can often reveal the service.
           Servers MUST use privacy options available at lower layers, and for example avoid publishing
           static IPv4 or IPv6 addresses, or static IEEE 802 MAC addresses.
         </t>
-        <t>
-          Servers MUST NOT disclose service instance names of offered services to unauthorized clients.
-        </t>
-        <t>
-          Servers MUST NOT disclose information about the services they offer to unauthorized clients.
-        </t>
-      </list>
+        </list>
     </t>
     <t>
       Offering services via DNS-SD, servers typically disclose their hostnames (SRV, A/AAAA), instance names of 
