@@ -14,12 +14,16 @@
    'http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2119.xml'>
 <!ENTITY rfc2782 PUBLIC ''
    'http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.2782.xml'>
+<!ENTITY rfc3927 PUBLIC ''
+   'http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.3927.xml'>
 <!ENTITY rfc4055 PUBLIC ''
    'http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4055.xml'>
 <!ENTITY rfc4075 PUBLIC ''
    'http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4075.xml'>
 <!ENTITY rfc4279 PUBLIC ''
    'http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4279.xml'>
+<!ENTITY rfc4291 PUBLIC ''
+   'http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4291.xml'>
 <!ENTITY rfc4648 PUBLIC ''
    'http://xml2rfc.ietf.org/public/rfc/bibxml/reference.RFC.4648.xml'>
 <!ENTITY rfc5054 PUBLIC ''
@@ -53,6 +57,8 @@
    "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnssd-push">
 <!ENTITY I-D.ietf-dnssd-srp PUBLIC ''  
    "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-dnssd-srp">
+<!ENTITY I-D.ietf-tls-esni PUBLIC ''  
+   "http://xml2rfc.ietf.org/public/rfc/bibxml3/reference.I-D.ietf-tls-esni">
 <!ENTITY kw14a PUBLIC ''
    "references/reference.kw14a.xml">
 <!ENTITY kw14b PUBLIC ''
@@ -829,8 +835,11 @@ analysis can often reveal the service.
     To mitigate attacks against privacy on lower layers,
     both servers and clients must use privacy options available at lower layers,
     and for example avoid publishing static IPv4 or IPv6 addresses, or static IEEE 802 MAC addresses.
-
-    TODO: ESNI like public IP address hiding for DNS-SD/DNS; using link local IP addresses for DNS-SD/mDNS
+    For services advertised on a single network link, link local IP addresses should be used; see 
+    <xref target="RFC3927" /> and <xref target="RFC4291" /> for IPv4 and IPv6, respectively.
+    Static servers advertising services globally via DNS can hide their IP addresses from
+    unauthorized clients using the split mode topology shown in <xref target="I-D.ietf-tls-esni"/>.
+    Hiding static MAC addresses can be achieved via MAC address randomization (see <xref target="RFC7844" />).
   </t>
 
   <section title="Private Client Requirements">
@@ -947,13 +956,17 @@ This draft does not require any IANA action.
   &rfc1034;
   &rfc1035;
   &rfc2782;
+  &rfc3927;
+  &rfc4291;
   &rfc5054;
   &rfc6762;
   &rfc7558;
+  &rfc7844;
   &rfc8117;
   &rfc8235;
   &rfc8236;
   &I-D.ietf-dnssd-srp;
+  &I-D.ietf-tls-esni;
 <reference anchor="KW14a" target="http://ieeexplore.ieee.org/xpl/articleDetails.jsp?arnumber=7011331">
   <front>
     <title>Adding Privacy to Multicast DNS Service Discovery</title>
