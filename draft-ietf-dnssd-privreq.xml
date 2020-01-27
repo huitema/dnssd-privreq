@@ -136,7 +136,7 @@ public exposure of the offering and requesting identities along with information
 offered and requested services. Parts of the published information can seriously breach the 
 user's privacy. These privacy issues and potential solutions are 
 discussed in <xref target="KW14a" />, <xref target="KW14b" /> and <xref target="K17" />.
-While the multicast nature of MDNS makes these risks obvious, most risks derive from the
+While the multicast nature of mDNS makes these risks obvious, most risks derive from the
 observability of transactions, and also need to be mitigated when using server-based
 variants of DNS-SD.
 </t>
@@ -799,7 +799,7 @@ analysis can often reveal the service.
   <section title="Private Client Requirements">
     <t>
       For all three scenarios described in <xref target="scenarios" />, client privacy
-      requires to:
+      requires DNS-SD messages to:
       <list style="numbers">
         <t>
           Avoid disclosure of the client's identity, either directly or via inference,
@@ -823,43 +823,42 @@ analysis can often reveal the service.
     </t>
     <t>
       In addition to the exposure and disclosure risks noted above, protocols and implementations will have
-      to consider to fingerprinting attacks (see <xref target="serverFingerprint"/>) that
-      could be retrieve similar information.
+      to consider fingerprinting attacks (see <xref target="serverFingerprint"/>) that could retrieve similar information.
     </t>
   </section>
 
   <section title="Private Server Requirements">
     <t>
       Servers like the "printer" discussed in scenario 1 are public, but the servers
-      discussed in scenarios 2 and 3 are by essence private. Private servers have server privacy as a requirement,
-      which can be subdivided into:
+      discussed in scenarios 2 and 3 are by essence private.
+      Server privacy requires DNS-SD messages to:
     </t>
     <t>
       <list style="numbers">
         <t>
-          Not disclosing the server's identity, either directly or via inference,
+          Avoid disclosure of the server's identity, either directly or via inference,
           to nodes other than authorized clients.
-          In particular, Servers MUST NOT publish static identifiers such as host names or service names.
+          In particular, Servers must avoid publishing static identifiers such as host names or service names.
           When those fields are required by the protocol, servers should publish randomized
           values. (See <xref target="RFC8117" /> for a discussion of host names.)
           <!-- (violated by, e.g., badly used hints; A and SRV responses) -->
         </t>
         <t>
-          Not exposing linkable identifiers that allow tracing servers.
+           Avoid exposure of linkable identifiers that allow tracing servers.
           <!-- (violated by, e.g., badly used hints) -->
         </t>
         <t>
-          Not disclosing service instance names or service types
+          Avoid disclosure of service instance names or service types
           of offered services to unauthorized clients.
           <!-- (violated by PTR record) -->
         </t>
         <t>
-          Not disclose information about the services they offer to
+          Avoid disclosure of information about the services they offer to
           unauthorized clients.
           <!-- (violated by TXT record) -->
         </t>
         <t>
-          Not disclosing static IPv4 or IPv6 addresses.
+          Avoid disclosure of static IPv4 or IPv6 addresses.
           <!-- (violated by A/AAAA responses) -->
         </t>
         </list>
@@ -873,7 +872,7 @@ analysis can often reveal the service.
 
   <section title="Security and Operation">
     <t>
-      In order to be secure and feasible, a DNS-SD privacy extension need to consider 
+      In order to be secure and feasible, a DNS-SD privacy extension needs to consider
       security and operational requirements including:
       <list style="numbers">
         <t>
@@ -882,7 +881,7 @@ analysis can often reveal the service.
           attacks.
         </t>
         <t>
-          Avoid designs in which a small message can trigger a large 
+          Avoiding designs in which a small message can trigger a large
           amount of traffic towards an unverified address, as this could be exploited in amplification attacks.
         </t>
       </list>
