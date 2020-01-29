@@ -76,7 +76,7 @@
 <?rfc inline='yes' ?>
 
 <rfc category="info" 
-     docName="draft-ietf-dnssd-prireq-03"
+     docName="draft-ietf-dnssd-prireq-04"
      ipr="trust200902">
 
 <front>
@@ -114,14 +114,14 @@
       </address>
     </author>
 
-    <date year="2019" />
+    <date year="2020" />
 
     <abstract>
         <t>
 DNS-SD (DNS Service Discovery) normally discloses information about devices offering and 
 requesting services. This information includes host names, network parameters, and possibly 
 a further description of the corresponding service instance. Especially when mobile devices 
-engage in DNS Service Discovery over Multicast DNS at a public hotspot, serious privacy 
+engage in DNS Service Discovery at a public hotspot, serious privacy 
 problems arise. We analyze the requirements of a privacy respecting discovery service.
 </t>
     </abstract>
@@ -136,6 +136,9 @@ public exposure of the offering and requesting identities along with information
 offered and requested services. Parts of the published information can seriously breach the 
 user's privacy. These privacy issues and potential solutions are 
 discussed in <xref target="KW14a" />, <xref target="KW14b" /> and <xref target="K17" />.
+While the multicast nature of mDNS makes these risks obvious, most risks derive from the
+observability of transactions, and also need to be mitigated when using server-based
+variants of DNS-SD.
 </t>
 <t>
 There are cases when nodes connected to a network want to provide
@@ -159,21 +162,14 @@ the DNS-SD messages leak identifying information such as the service instance na
 the host name, or service properties.
 </t>
 
-<section title="Terminology">
-<t>
-  The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT",
-  "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this
-  document are to be interpreted as described in <xref target="RFC2119" />.
-</t>
-
 <t>
 <list style="hanging">
 <t hangText="Identity">
-  In this document, the term "identity" refers to the identity of the entitiy (legal person)
+  In this document, the term "identity" refers to the identity of the entity (legal person)
   operating a device.
 </t>
 <t hangText="Disclosing an Identity">
-  In this document "disclosing an identiy" means showing the identity of operating entities
+  In this document "disclosing an identity" means showing the identity of operating entities
   to devices external to the discovery process; e.g., devices on the same network link that are listening to the
   network traffic but are not actually involved in the discovery process.
   This document focuses on identity disclosure by data conveyed via messages on the service discovery protocol layer.
@@ -186,8 +182,6 @@ the host name, or service properties.
 </list>
 </t>
 
-
-</section>
 </section>
 
 <section title="Threat Model" anchor="threatmodel">
@@ -224,7 +218,7 @@ the host name, or service properties.
 
 <t>
   In this section we analyse how the attackers described in the previous section
-  might threaten the privacy of legal persons operating devices engaging in service discovery.
+  might threaten the privacy of entities operating devices engaging in service discovery.
   We focus on attacks leveraging data transmitted in service discovery protocol messages.
 </t>
 
@@ -386,9 +380,6 @@ will also provide a "fingerprint" of the person, allowing identification.
 </section>
 </section>
 
-
-
-
 <section title="DNS-SD Privacy Considerations" anchor="analysis">
 
 <t>
@@ -498,7 +489,9 @@ Carol's Notebook       . _presence._tcp   . local
 </t>
 <t>
 Alice will see the list on her phone and understand intuitively that she should
-pick the first item. The discovery will "just work".
+pick the first item. The discovery will "just work". (Note that our examples of
+service names conform to the specification in section 4.1 of <xref target="RFC6763" />,
+but may require some character escaping when entered in conventional DNS software.)
 </t>
 <t>
 However, DNS-SD/mDNS will reveal to anybody that Alice is currently visiting the Internet Cafe.
@@ -708,8 +701,8 @@ analysis can often reveal the service.
     to a proxy, which will act on behalf of the device for some functions,
     while the device itself goes to sleep to reduce power consumption.
     When the proxy determines that some action is required which only
-    the device itself can perform, the proxy may have some way,
-    such as Ethernet "Magic Packet", to wake the device.</t>
+    the device itself can perform, the proxy may have some way to wake the
+    device, as implied in <xref target="RFC6762">RFC6762</xref></t>
 
     <t>In many cases, the device may not trust the network proxy
     sufficiently to share all its confidential key material with the proxy.
@@ -745,32 +738,10 @@ analysis can often reveal the service.
     there needs to be some way that trust is initially established,
     to convert an "untrusted entity" into a "trusted entity".</t>
 
-    <t>One way to establish trust between two entities is
-    to trust a third party to make that determination for us.
-    For example, the X.509 certificates used by TLS and HTTPS web browsing
-    are based on the model of trusting a third party to tell us whom to trust.
-    There are some difficulties in using this model for establishing
-    trust for service discovery uses.
-    If we want to print our tax returns or medical documents on "our"
-    printer, then we need to know which printer on the network we can
-    trust be be "our" printer.
-    All of the printers we discover on the network may be legitimate
-    printers made by legitimate printer manufacturers, but not all of
-    them are "our" printer. A third-party certificate authority cannot
-    tell us which one of the printers is ours.</t>
-
-    <t>Another common way to establish a trust relationship is
-    Trust On First Use (TOFU), as used by ssh.
-    The first usage is a Leap Of Faith, but after that public keys
-    are exchanged and at least we can confirm that subsequent
-    communications are with the same entity.
-    In today's world, where there may be attackers present even at that
-    first use, it would be preferable to be able to establish a trust relationship
-    without requiring an initial Leap Of Faith.</t>
-
-    <t>Techniques now exist for securely establishing a trust relationship
-    without requiring an initial Leap Of Faith.
-    Trust can be established securely using a short passphrase or PIN with
+    <t>The purpose of this document is not to define the specific way in
+    which trust can be established. Protocol designers may rely on a
+    number of existing technologies, including PKI, Trust On First Use (TOFU),
+    or using a short passphrase or PIN with
     cryptographic algorithms such as
     <xref target="RFC5054">Secure Remote Password (SRP)</xref>
     or a Password Authenticated Key Exchange like
@@ -779,29 +750,12 @@ analysis can often reveal the service.
     <xref target="RFC8235">Schnorr Non-interactive Zero-Knowledge Proof</xref>.
     </t>
 
-    <t>Such techniques require a user to enter the correct passphrase or PIN
-    in order for the cryptographic algorithms to establish working communication.
-    This avoids the human tendency to simply press the "OK" button when asked
-    if they want to do something on their electronic device.
-    It removes the human fallibility element from the equation,
-    and avoids the human users inadvertently sabotaging their own security.</t>
-
-  <t>
-    Without these techniques, users who try to print their tax return on
-    a printer they've never used before will be tempted to just go ahead
-    if the name looks right. With these techniques they'll be prompted to
-    enter a pairing PIN, and *cannot* ignore that warning.
-    They can’t just press an “OK” button.
-    They have to walk to the printer and read the displayed PIN and enter it.
-    And if the intended printer is not displaying a pairing PIN, or is displaying
-    a different pairing PIN, that means the user may be being spoofed,
-    and the connection will not succeed, and the failure will not reveal
-    any secret information to the attacker.
-    As much as the human desires to "just give me an OK button to make it print",
-    and the attacker desires them to click that OK button, too,
-    the cryptographic algorithms do not give the user the ability to opt
-    out of the security, and consequently do not give the attacker
-    any way to persuade the user to opt out of the security protections.</t>
+    <t>Protocol designers should consider a specific usability pitfall when
+    trust is established immediately prior to performing discovery. Users
+    will have a tendency to "click OK" in order to achieve their task. This
+    implicit vulnerability is avoided if the trust establishment requires
+    active participation of the user, such as entering a password or PIN.
+    </t>
 
   </section>
 
@@ -844,20 +798,20 @@ analysis can often reveal the service.
 
   <section title="Private Client Requirements">
     <t>
-      For all three scenarios described in <xref target="scenarios" />, client privacy is a requirement.
-      Client privacy, as a requirement, can be subdivided into:
+      For all three scenarios described in <xref target="scenarios" />, client privacy
+      requires DNS-SD messages to:
       <list style="numbers">
         <t>
-          DNS-SD messages transmitted by clients MUST NOT disclose the client's identity, either directly or via inference,
+          Avoid disclosure of the client's identity, either directly or via inference,
           to nodes other than select servers.
           <!-- (violated by typical queries, and badly designed privacy extensions, e.g., via badly used hints) -->
         </t>
         <t>
-          DNS-SD messages transmitted by clients MUST NOT contain linkable identifiers that allow tracing client devices.
+          Avoid exposure of linkable identifiers that allow tracing client devices.
           <!-- (violated by typical queries, and badly designed privacy extensions, e.g., via badly used hints) -->
         </t>
         <t>
-          DNS-SD messages transmitted by clients MUST NOT disclose the client's interest in specific service instances or service types to
+          Avoid disclosure of the client's interest in specific service instances or service types to
           nodes other than select servers.
           <!-- (violated by PTR, TXT, SRV queries) -->
         </t>
@@ -868,43 +822,43 @@ analysis can often reveal the service.
       specific services types and specific instances of these types, respectively.
     </t>
     <t>
-      Privacy solutions fulfilling these requirements must be resilient to fingerprinting attacks (see <xref target="serverFingerprint"/>) that
-      could be used for breaching these requirements.
+      In addition to the exposure and disclosure risks noted above, protocols and implementations will have
+      to consider fingerprinting attacks (see <xref target="serverFingerprint"/>) that could retrieve similar information.
     </t>
   </section>
 
   <section title="Private Server Requirements">
     <t>
       Servers like the "printer" discussed in scenario 1 are public, but the servers
-      discussed in scenarios 2 and 3 are by essence private. Private servers have server privacy as a requirement,
-      which can be subdivided into:
+      discussed in scenarios 2 and 3 are by essence private.
+      Server privacy requires DNS-SD messages to:
     </t>
     <t>
       <list style="numbers">
         <t>
-          DNS-SD messages transmitted by servers MUST NOT disclose the server's identity, either directly or via inference,
+          Avoid disclosure of the server's identity, either directly or via inference,
           to nodes other than authorized clients.
-          In particular, Servers MUST NOT publish static identifiers such as host names or service names.
+          In particular, Servers must avoid publishing static identifiers such as host names or service names.
           When those fields are required by the protocol, servers should publish randomized
           values. (See <xref target="RFC8117" /> for a discussion of host names.)
           <!-- (violated by, e.g., badly used hints; A and SRV responses) -->
         </t>
         <t>
-          DNS-SD messages transmitted by servers MUST NOT contain linkable identifiers that allow tracing servers.
+           Avoid exposure of linkable identifiers that allow tracing servers.
           <!-- (violated by, e.g., badly used hints) -->
         </t>
         <t>
-          DNS-SD messages transmitted by servers MUST NOT disclose service instance names or service types
+          Avoid disclosure of service instance names or service types
           of offered services to unauthorized clients.
           <!-- (violated by PTR record) -->
         </t>
         <t>
-          DNS-SD messages transmitted by servers MUST NOT disclose information about the services they offer to
+          Avoid disclosure of information about the services they offer to
           unauthorized clients.
           <!-- (violated by TXT record) -->
         </t>
         <t>
-          DNS-SD messages transmitted by servers MUST NOT disclose static IPv4 or IPv6 addresses.
+          Avoid disclosure of static IPv4 or IPv6 addresses.
           <!-- (violated by A/AAAA responses) -->
         </t>
         </list>
@@ -918,15 +872,17 @@ analysis can often reveal the service.
 
   <section title="Security and Operation">
     <t>
-      In order to be secure and feasible, a DNS-SD privacy extension must also heed the following
-      security and operational requirements.
-    </t>
-    <t>
-      All scenarios require:
+      In order to be secure and feasible, a DNS-SD privacy extension needs to consider
+      security and operational requirements including:
       <list style="numbers">
         <t>
-          DoS resistance: The privacy protecting measures added to DNS-SD MUST neither add a significant CPU overhead on nodes,
-          nor cause significantly higher network load. Further, amplification attacks MUST NOT be allowed.
+          Avoiding significant CPU overhead on nodes or significantly higher network load,
+          because such overhead or load would make nodes vulnerables to denial of service
+          attacks.
+        </t>
+        <t>
+          Avoiding designs in which a small message can trigger a large
+          amount of traffic towards an unverified address, as this could be exploited in amplification attacks.
         </t>
       </list>
     </t>
@@ -950,7 +906,6 @@ This draft does not require any IANA action.
 
 <back>
 <references title="Informative References">
-  &rfc2119;
   &rfc6763;
   &rfc1033;
   &rfc1034;
