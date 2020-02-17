@@ -122,7 +122,7 @@ DNS-SD (DNS Service Discovery) normally discloses information about devices offe
 requesting services. This information includes host names, network parameters, and possibly 
 a further description of the corresponding service instance. Especially when mobile devices 
 engage in DNS Service Discovery at a public hotspot, serious privacy 
-problems arise. We analyze the requirements of a privacy respecting discovery service.
+problems arise. We analyze the requirements of a privacy-respecting discovery service.
 </t>
     </abstract>
 </front>
@@ -130,7 +130,8 @@ problems arise. We analyze the requirements of a privacy respecting discovery se
 <middle>
 <section title="Introduction">
 <t>
-DNS-SD <xref target="RFC6763" /> over mDNS <xref target="RFC6762" /> enables zero-configuration
+DNS Service Discovery (DNS-SD) <xref target="RFC6763" /> over Multicast DNS
+(mDNS) <xref target="RFC6762" /> enables zero-configuration
 service discovery in local networks. It is very convenient for users, but it requires the 
 public exposure of the offering and requesting identities along with information about the 
 offered and requested services. Parts of the published information can seriously breach the 
@@ -150,8 +151,7 @@ two travelers who want to share files between their laptops
 when waiting for their plane in an airport lounge.
 </t>
 <t>
-We expect that these exchanges will start with a discovery 
-procedure using DNS-SD <xref target="RFC6763" /> over mDNS <xref target="RFC6762" />.
+We expect that these exchanges will start with a discovery procedure using DNS-SD over mDNS.
 One of the devices will publish the availability of a service, such as a picture library
 or a file store in our examples. The user of the other device will
 discover this service, and then connect to it.
@@ -337,7 +337,7 @@ to the phone in their pocket.
 <artwork>
 
                                      ( Taking notes:
-                                     ( David' is here. His watch is 
+                                     ( David is here. His watch is 
                                      ( talking to his phone
                                        ~~~~~~~~~~~
                                                    o
@@ -588,7 +588,7 @@ sufficient to identify the specific device.
 </t>
 
 <t>
-A sometimes heard argument is that devices providing services can be identified
+An argument is sometimes made that devices providing services can be identified
 by observing the local traffic, and that trying to hide the presence of the service
 is futile. However,
 <list style="numbers">
@@ -636,9 +636,9 @@ analysis can often reveal the service.
   <t>For each of the operations described above, we must also consider security
   threats we are concerned about.</t>
   <section title="Authenticity, Integrity &amp; Freshness">
-    <t>Can we trust the information we receive?
+    <t>Can devices (both servers and clients) trust the information they receive?
     Has it been modified in flight by an adversary?
-    Do we trust the source of the information?
+    Can devices trust the source of the information?
     Is the source of information fresh, i.e., not replayed?
     Freshness may or may not be required depending on whether the 
     discovery process is meant to be online. In some cases, publishing
@@ -651,9 +651,9 @@ analysis can often reveal the service.
     <t>Confidentiality is about restricting information access to only
       authorized individuals. Ideally this should only be the appropriate 
       trusted parties, though it can be challenging to define who are "the 
-      appropriate trusted parties." In some uses cases, this may mean that only 
+      appropriate trusted parties." In some use cases, this may mean that only 
       mutually authenticated and trusting clients and servers can read messages sent for one another. 
-      The "Discover" operation in particular is often used to discover
+      The process of service discovery in particular is often used to discover
       new entities that the device did not previously know about.
       It may be tricky to work out how a device can have an established trust
       relationship with a new entity it has never previously communicated with.
