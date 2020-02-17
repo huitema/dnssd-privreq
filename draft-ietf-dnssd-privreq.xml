@@ -370,6 +370,7 @@ methods for establishing secure relations between the devices. There is
 also an added emphasis on hiding the type of devices that the person
 wears.
 </t>
+
 <t>
 In addition to tracking the identity of the owner of the devices, the adversary
 is interested in the characteristics of the devices, such as type, brand, and model.
@@ -377,6 +378,15 @@ Identifying the type of device can lead to further attacks, from theft to
 device specific hacking. The combination of devices worn by the same person
 will also provide a "fingerprint" of the person, allowing identification.
 </t>
+
+<t>
+This scenario also represents the general case of bringing private IoT devices into public places.
+A wearable IoT device might act as a DNS-SD/mDNS client which allows attackers to infer information about devices' owners.
+While the attacker might be a person as in the example figure,
+this could also be abused for large scale data collection installing stationary
+IoT-device-tracking servers in frequented public places.
+</t>
+
 </section>
 </section>
 
@@ -878,9 +888,9 @@ analysis can often reveal the service.
       security and operational requirements including:
       <list style="numbers">
         <t>
-          Avoiding significant CPU overhead on nodes or significantly higher network load,
-          because such overhead or load would make nodes vulnerables to denial of service
-          attacks.
+          Avoiding significant CPU overhead on nodes or significantly higher network load.
+          Such overhead or load would make nodes vulnerable to denial of service
+          attacks. Further, it would increase power consumption which is critical for IoT devices.
         </t>
         <t>
           Avoiding designs in which a small message can trigger a large
