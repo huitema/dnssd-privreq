@@ -1,0 +1,25 @@
+* review-ietf-dnssd-prireq-04-iotdir-lc-chakrabarti-2020-02-13
+
+I have reviewed draft-ietf-dnssd-prireq-04.
+
+The document is informative and clear with a few editorial nits on section 4.1 through 4.3.
+
+I have reviewed from the IoT devices perspective  and most likely for the
+consumer devices that might be present in the public network and are using
+shared network technologies (wireless or wired). The threat model are
+applicable to them.
+Section 3.1 describes implications for wearable and  server related privacy
+issue.  Perhaps a small paragraph might be added in this section or in the
+introduction calling out possible privacy and security threats on personal IoT
+devices in the public places ( that might act as a dns-sd client).
+
+At the same time, considering limited processing capabilities, battery saving
+concern considerations, privacy related extra processing of messages from the
+dns-sd server should not be mandated for the IoT devices. Depending on the
+device capabilities, the feature can be configurable and the user can turn
+on/off  at their need; additionally some iot devices may not care about the
+privacy at all.
+
+So, a few additional lines on IoT implications for the threat model and yet
+flexibility of implementation of the dns-sd IOT client may be mentioned in the
+document to clarify the IoT devices in the shared wireless/wired medium.
