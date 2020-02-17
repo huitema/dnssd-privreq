@@ -137,8 +137,8 @@ offered and requested services. Parts of the published information can seriously
 user's privacy. These privacy issues and potential solutions are 
 discussed in <xref target="KW14a" />, <xref target="KW14b" /> and <xref target="K17" />.
 While the multicast nature of mDNS makes these risks obvious, most risks derive from the
-observability of transactions, and also need to be mitigated when using server-based
-variants of DNS-SD.
+observability of transactions.
+These risks also need to be mitigated when using server-based variants of DNS-SD.
 </t>
 <t>
 There are cases when nodes connected to a network want to provide
@@ -157,7 +157,7 @@ or a file store in our examples. The user of the other device will
 discover this service, and then connect to it.
 </t>
 <t>
-When analyzing these scenarios in <xref target="analysis"/>, we find that
+When analyzing these scenarios in <xref target="scenarios"/>, we find that
 the DNS-SD messages leak identifying information such as the service instance name,
 the host name, or service properties.
 </t>
@@ -383,7 +383,7 @@ will also provide a "fingerprint" of the person, allowing identification.
 <section title="DNS-SD Privacy Considerations" anchor="analysis">
 
 <t>
-  While the discovery process illustrated in the scenarios in <xref target="threatmodel"/> most likely
+  While the discovery process illustrated in the scenarios in <xref target="scenarios"/> most likely
   would be based on <xref target="RFC6762" /> as a means for making service information available,
   this document considers all kinds of means for making DNS-SD resource records available.
   These means comprise but are not limited to mDNS <xref target="RFC6762" />,
@@ -406,6 +406,7 @@ separate abstract privacy requirements that vary based on the use case. These ar
 <t>
   In this section, we describe aspects of DNS-SD that make these requirements
   difficult to achieve in practice.
+  While it is intended to be thorough, it is not possible to be exhaustive.
 </t>
 
 <t>
@@ -760,7 +761,8 @@ analysis can often reveal the service.
   </section>
 
   <section title="External Dependencies">
-    <t>Trust establishment may depend on external, and optionally online, parties. 
+    <t>Trust establishment may depend on external parties.
+      Optionally, this might involve synchronous communication.
     Systems which have such a dependency may be attacked by interfering with communication 
     to external dependencies. Where possible, such dependencies should be minimized. 
     Local trust models are best for secure initialization in the presence of active attackers.</t>
@@ -776,7 +778,7 @@ analysis can often reveal the service.
     state requirements for privacy preserving DNS-SD in the following subsections.
   </t>
   <t>
-    Defining a solution according to these requirements will lead to a solution that
+    Defining a solution according to these requirements is intended to lead to a solution that
     does not transmit privacy violating DNS-SD messages and further does not open pathways to new attacks against the
     operation of DNS-SD.
   </t>
@@ -818,7 +820,7 @@ analysis can often reveal the service.
       </list>
     </t>
     <t>
-      Listing and resolving services via DNS-SD, clients typically disclose their interest in
+      When listing and resolving services via current DNS-SD deployments, clients typically disclose their interest in
       specific services types and specific instances of these types, respectively.
     </t>
     <t>
@@ -864,7 +866,7 @@ analysis can often reveal the service.
         </list>
     </t>
     <t>
-      Offering services via DNS-SD, servers typically disclose their hostnames (SRV, A/AAAA), instance names of 
+      When offering services via current DNS-SD deployments, servers typically disclose their hostnames (SRV, A/AAAA), instance names of 
       offered services (PRT, SRV), and information about services (TXT).
       Heeding these requirements protects a server's privacy on the DNS-SD level.
     </t>
