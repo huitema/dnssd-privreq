@@ -1,4 +1,4 @@
-TARGET    = draft-ietf-dnssd-privreq
+TARGET    = draft-ietf-dnssd-prireq
 SOURCE    = ${TARGET}.xml
 TXT       = ${TARGET}.txt
 HTML      = ${TARGET}.html

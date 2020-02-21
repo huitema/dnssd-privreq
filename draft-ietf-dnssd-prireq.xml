@@ -76,7 +76,7 @@
 <?rfc inline='yes' ?>
 
 <rfc category="info" 
-     docName="draft-ietf-dnssd-prireq-04"
+     docName="draft-ietf-dnssd-privreq-05"
      ipr="trust200902">
 
 <front>
@@ -122,7 +122,7 @@ DNS-SD (DNS Service Discovery) normally discloses information about devices offe
 requesting services. This information includes host names, network parameters, and possibly 
 a further description of the corresponding service instance. Especially when mobile devices 
 engage in DNS Service Discovery at a public hotspot, serious privacy 
-problems arise. We analyze the requirements of a privacy respecting discovery service.
+problems arise. We analyze the requirements of a privacy-respecting discovery service.
 </t>
     </abstract>
 </front>
@@ -130,15 +130,16 @@ problems arise. We analyze the requirements of a privacy respecting discovery se
 <middle>
 <section title="Introduction">
 <t>
-DNS-SD <xref target="RFC6763" /> over mDNS <xref target="RFC6762" /> enables zero-configuration
+DNS Service Discovery (DNS-SD) <xref target="RFC6763" /> over Multicast DNS
+(mDNS) <xref target="RFC6762" /> enables zero-configuration
 service discovery in local networks. It is very convenient for users, but it requires the 
 public exposure of the offering and requesting identities along with information about the 
 offered and requested services. Parts of the published information can seriously breach the 
 user's privacy. These privacy issues and potential solutions are 
 discussed in <xref target="KW14a" />, <xref target="KW14b" /> and <xref target="K17" />.
 While the multicast nature of mDNS makes these risks obvious, most risks derive from the
-observability of transactions, and also need to be mitigated when using server-based
-variants of DNS-SD.
+observability of transactions.
+These risks also need to be mitigated when using server-based variants of DNS-SD.
 </t>
 <t>
 There are cases when nodes connected to a network want to provide
@@ -150,14 +151,13 @@ two travelers who want to share files between their laptops
 when waiting for their plane in an airport lounge.
 </t>
 <t>
-We expect that these exchanges will start with a discovery 
-procedure using DNS-SD <xref target="RFC6763" /> over mDNS <xref target="RFC6762" />.
+We expect that these exchanges will start with a discovery procedure using DNS-SD over mDNS.
 One of the devices will publish the availability of a service, such as a picture library
 or a file store in our examples. The user of the other device will
 discover this service, and then connect to it.
 </t>
 <t>
-When analyzing these scenarios in <xref target="analysis"/>, we find that
+When analyzing these scenarios in <xref target="scenarios"/>, we find that
 the DNS-SD messages leak identifying information such as the service instance name,
 the host name, or service properties.
 </t>
@@ -337,7 +337,7 @@ to the phone in their pocket.
 <artwork>
 
                                      ( Taking notes:
-                                     ( David' is here. His watch is 
+                                     ( David is here. His watch is 
                                      ( talking to his phone
                                        ~~~~~~~~~~~
                                                    o
@@ -370,6 +370,7 @@ methods for establishing secure relations between the devices. There is
 also an added emphasis on hiding the type of devices that the person
 wears.
 </t>
+
 <t>
 In addition to tracking the identity of the owner of the devices, the adversary
 is interested in the characteristics of the devices, such as type, brand, and model.
@@ -377,13 +378,22 @@ Identifying the type of device can lead to further attacks, from theft to
 device specific hacking. The combination of devices worn by the same person
 will also provide a "fingerprint" of the person, allowing identification.
 </t>
+
+<t>
+This scenario also represents the general case of bringing private IoT devices into public places.
+A wearable IoT device might act as a DNS-SD/mDNS client which allows attackers to infer information about devices' owners.
+While the attacker might be a person as in the example figure,
+this could also be abused for large scale data collection installing stationary
+IoT-device-tracking servers in frequented public places.
+</t>
+
 </section>
 </section>
 
 <section title="DNS-SD Privacy Considerations" anchor="analysis">
 
 <t>
-  While the discovery process illustrated in the scenarios in <xref target="threatmodel"/> most likely
+  While the discovery process illustrated in the scenarios in <xref target="scenarios"/> most likely
   would be based on <xref target="RFC6762" /> as a means for making service information available,
   this document considers all kinds of means for making DNS-SD resource records available.
   These means comprise but are not limited to mDNS <xref target="RFC6762" />,
@@ -406,6 +416,7 @@ separate abstract privacy requirements that vary based on the use case. These ar
 <t>
   In this section, we describe aspects of DNS-SD that make these requirements
   difficult to achieve in practice.
+  While it is intended to be thorough, it is not possible to be exhaustive.
 </t>
 
 <t>
@@ -587,7 +598,7 @@ sufficient to identify the specific device.
 </t>
 
 <t>
-A sometimes heard argument is that devices providing services can be identified
+An argument is sometimes made that devices providing services can be identified
 by observing the local traffic, and that trying to hide the presence of the service
 is futile. However,
 <list style="numbers">
@@ -635,9 +646,9 @@ analysis can often reveal the service.
   <t>For each of the operations described above, we must also consider security
   threats we are concerned about.</t>
   <section title="Authenticity, Integrity &amp; Freshness">
-    <t>Can we trust the information we receive?
+    <t>Can devices (both servers and clients) trust the information they receive?
     Has it been modified in flight by an adversary?
-    Do we trust the source of the information?
+    Can devices trust the source of the information?
     Is the source of information fresh, i.e., not replayed?
     Freshness may or may not be required depending on whether the 
     discovery process is meant to be online. In some cases, publishing
@@ -650,9 +661,9 @@ analysis can often reveal the service.
     <t>Confidentiality is about restricting information access to only
       authorized individuals. Ideally this should only be the appropriate 
       trusted parties, though it can be challenging to define who are "the 
-      appropriate trusted parties." In some uses cases, this may mean that only 
+      appropriate trusted parties." In some use cases, this may mean that only 
       mutually authenticated and trusting clients and servers can read messages sent for one another. 
-      The "Discover" operation in particular is often used to discover
+      The process of service discovery in particular is often used to discover
       new entities that the device did not previously know about.
       It may be tricky to work out how a device can have an established trust
       relationship with a new entity it has never previously communicated with.
@@ -760,7 +771,8 @@ analysis can often reveal the service.
   </section>
 
   <section title="External Dependencies">
-    <t>Trust establishment may depend on external, and optionally online, parties. 
+    <t>Trust establishment may depend on external parties.
+      Optionally, this might involve synchronous communication.
     Systems which have such a dependency may be attacked by interfering with communication 
     to external dependencies. Where possible, such dependencies should be minimized. 
     Local trust models are best for secure initialization in the presence of active attackers.</t>
@@ -776,7 +788,7 @@ analysis can often reveal the service.
     state requirements for privacy preserving DNS-SD in the following subsections.
   </t>
   <t>
-    Defining a solution according to these requirements will lead to a solution that
+    Defining a solution according to these requirements is intended to lead to a solution that
     does not transmit privacy violating DNS-SD messages and further does not open pathways to new attacks against the
     operation of DNS-SD.
   </t>
@@ -818,7 +830,7 @@ analysis can often reveal the service.
       </list>
     </t>
     <t>
-      Listing and resolving services via DNS-SD, clients typically disclose their interest in
+      When listing and resolving services via current DNS-SD deployments, clients typically disclose their interest in
       specific services types and specific instances of these types, respectively.
     </t>
     <t>
@@ -864,7 +876,7 @@ analysis can often reveal the service.
         </list>
     </t>
     <t>
-      Offering services via DNS-SD, servers typically disclose their hostnames (SRV, A/AAAA), instance names of 
+      When offering services via current DNS-SD deployments, servers typically disclose their hostnames (SRV, A/AAAA), instance names of 
       offered services (PRT, SRV), and information about services (TXT).
       Heeding these requirements protects a server's privacy on the DNS-SD level.
     </t>
@@ -876,9 +888,9 @@ analysis can often reveal the service.
       security and operational requirements including:
       <list style="numbers">
         <t>
-          Avoiding significant CPU overhead on nodes or significantly higher network load,
-          because such overhead or load would make nodes vulnerables to denial of service
-          attacks.
+          Avoiding significant CPU overhead on nodes or significantly higher network load.
+          Such overhead or load would make nodes vulnerable to denial of service
+          attacks. Further, it would increase power consumption which is critical for IoT devices.
         </t>
         <t>
           Avoiding designs in which a small message can trigger a large
