@@ -76,7 +76,7 @@
 <?rfc inline='yes' ?>
 
 <rfc category="info" 
-     docName="draft-ietf-dnssd-prireq-05"
+     docName="draft-ietf-dnssd-privreq-05"
      ipr="trust200902">
 
 <front>
