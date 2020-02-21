@@ -816,16 +816,13 @@ analysis can often reveal the service.
         <t>
           Avoid disclosure of the client's identity, either directly or via inference,
           to nodes other than select servers.
-          <!-- (violated by typical queries, and badly designed privacy extensions, e.g., via badly used hints) -->
         </t>
         <t>
           Avoid exposure of linkable identifiers that allow tracing client devices.
-          <!-- (violated by typical queries, and badly designed privacy extensions, e.g., via badly used hints) -->
         </t>
         <t>
           Avoid disclosure of the client's interest in specific service instances or service types to
           nodes other than select servers.
-          <!-- (violated by PTR, TXT, SRV queries) -->
         </t>
       </list>
     </t>
@@ -853,25 +850,20 @@ analysis can often reveal the service.
           In particular, Servers must avoid publishing static identifiers such as host names or service names.
           When those fields are required by the protocol, servers should publish randomized
           values. (See <xref target="RFC8117" /> for a discussion of host names.)
-          <!-- (violated by, e.g., badly used hints; A and SRV responses) -->
         </t>
         <t>
            Avoid exposure of linkable identifiers that allow tracing servers.
-          <!-- (violated by, e.g., badly used hints) -->
         </t>
         <t>
           Avoid disclosure of service instance names or service types
           of offered services to unauthorized clients.
-          <!-- (violated by PTR record) -->
         </t>
         <t>
           Avoid disclosure of information about the services they offer to
           unauthorized clients.
-          <!-- (violated by TXT record) -->
         </t>
         <t>
           Avoid disclosure of static IPv4 or IPv6 addresses.
-          <!-- (violated by A/AAAA responses) -->
         </t>
         </list>
     </t>
