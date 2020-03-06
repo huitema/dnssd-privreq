@@ -882,6 +882,13 @@ analysis can often reveal the service.
       offered services (PRT, SRV), and information about services (TXT).
       Heeding these requirements protects a server's privacy on the DNS-SD level.
     </t>
+    <t>
+      The current DNS-SD user interfaces present the list of discovered service names to the users,
+      and let them pick a service from the list. Using random identifiers for service names renders
+      that UI flow unusable. Privacy-respecting discovery protocols will have to solve this issue,
+      for example by presenting authenticated or decrypted service names instead of the
+      randomized values.
+    </t>
   </section>
 
   <section title="Security and Operation">
