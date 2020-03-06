@@ -268,8 +268,9 @@ in an hotel, or at an airport.
 In that scenario, the server is public and wants to be discovered, but
 the client is private. The adversary will be listening to the network
 traffic, trying to identify the visitors' devices and their activity. 
-Identifying devices leads to identifying people, either just for
-tracking people or preliminary to targeted attacks.
+Identifying devices leads to identifying people, either for surveillance of
+these individuals in the physical world or as a preliminary step for a targeted
+cyber attack.
 </t>
 <t>
 The requirement in that scenario is that the discovery activity
@@ -322,7 +323,9 @@ the owners of the devices.
 </t>
 <t>
 The requirement in that scenario is that the discovery activity
-should not disclose the identity of either the client or the server.
+should not disclose the identity of either the client or the server,
+nor reveal the business and social interactions between the owners of
+the devices.
 </t>
 </section>
 
@@ -387,6 +390,11 @@ this could also be abused for large scale data collection installing stationary
 IoT-device-tracking servers in frequented public places.
 </t>
 
+<t>
+The issues described in <xref target="privclipubserv" /> such as identifying
+people or using the information for targeted attacks apply here too.
+</t>
+
 </section>
 </section>
 
@@ -422,8 +430,9 @@ separate abstract privacy requirements that vary based on the use case. These ar
 <t>
   Client identity privacy, if not addressed properly, can be thwarted by a passive attacker (see <xref target="threatmodel"/>).
   The type of passive attacker necessary depends on the means of making service information available.
-  Information conveyed via multicast messages can be obtained by an on-link attacker, while unicast messages are only
-  available to MITM attackers. Using multi-link service discovery solutions <xref target="RFC7558"/>,
+  Information conveyed via multicast messages can be obtained by an on-link attacker. Unicast messages are
+  easy to access if the transmission is not encrypted, but could still be accessed by an attacker with
+  access to network routers or bridges. Using multi-link service discovery solutions <xref target="RFC7558"/>,
   external attackers have to be taken into consideration as well, e.g., when relaying multicast messages to other links.
 </t>
 
@@ -594,7 +603,7 @@ Priority and weight attributes in the SRV records.
 This combination of services and attributes will often be sufficient to identify
 the version of the software running on a device. If a device publishes
 many services with rich sets of attributes, the combination may be
-sufficient to identify the specific device.
+sufficient to identify the specific device and track its owner.
 </t>
 
 <t>
