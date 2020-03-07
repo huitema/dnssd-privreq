@@ -146,7 +146,7 @@ There are cases when nodes connected to a network want to provide
 or consume services without exposing their identities to the other
 parties connected to the same network. Consider, for example, a
 traveler wanting to upload pictures from a phone to a laptop
-when connected to the Wi-Fi network of an Internet cafe, or
+when both are connected to the Wi-Fi network of an Internet cafe, or
 two travelers who want to share files between their laptops
 when waiting for their plane in an airport lounge.
 </t>
@@ -159,10 +159,7 @@ discover this service, and then connect to it.
 <t>
 When analyzing these scenarios in <xref target="scenarios"/>, we find that
 the DNS-SD messages leak identifying information such as the service instance name,
-the host name, or service properties.
-</t>
-
-<t>
+the host name, or service properties. We use the following definitions:
 <list style="hanging">
 <t hangText="Identity">
   In this document, the term "identity" refers to the identity of the entity (legal person)
@@ -177,7 +174,8 @@ the host name, or service properties.
 </t>
 <t hangText="Disclosing Information">
   In this document "disclosing information" is also focused
-  on disclosure of data conveyed via messages on the service discovery protocol layer.
+  on disclosure of data conveyed via messages on the service discovery protocol layer,
+  such as generic non-identity but still potentially sensitive data.
 </t>
 </list>
 </t>
@@ -406,7 +404,7 @@ people or using the information for targeted attacks apply here too.
   this document considers all kinds of means for making DNS-SD resource records available.
   These means comprise but are not limited to mDNS <xref target="RFC6762" />,
   DNS servers (<xref target="RFC1033"/> <xref target="RFC1034"/>, <xref target="RFC1035"/>),
-  e.g. using SRP <xref target="I-D.ietf-dnssd-srp"/>, and multi-link <xref target="RFC7558"/> networks.
+  using SRP <xref target="I-D.ietf-dnssd-srp"/>, and multi-link <xref target="RFC7558"/> networks.
 </t>
 
 <t>The discovery scenarios in <xref target="scenarios"/> illustrate three
@@ -469,9 +467,7 @@ specific properties of the service instance.
 </t>
 </list>
 </t>
-
 </section>
-
 
 <section title="Privacy Implication of Publishing Service Instance Names" anchor="instanceLeak" >
 <t>
@@ -521,6 +517,11 @@ _presence protocol on both of her devices. She might currently chat with Bob or 
 as they are also using a _presence supporting chat application.
 This information is not just available to devices actively browsing for and offering 
 services, but to anybody passively listening to the network traffic, i.e. a passive on-link attacker.
+</t>
+<t>
+There is, of course, also no authentication requirement to claim a
+particular instance name, so an active attacker can provide resources
+that claim to be Alice's but are not.
 </t>
 </section>
 
@@ -739,7 +740,8 @@ analysis can often reveal the service.
     <t>Creating a discovery protocol that has the desired security
     properties may result in a design that is not efficient.
     To perform the necessary operations the protocol may
-    need to send and receive a large number of network packets.
+    need to send and receive a large number of network packets,
+    or require an inordinate amount of multicast transmissions.
     This may consume an unreasonable amount of network capacity,
     particularly problematic when it is a shared wireless spectrum.
     Further, it may cause an unnecessary level of power consumption
