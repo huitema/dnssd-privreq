@@ -921,7 +921,8 @@ This draft does not require any IANA action.
 <section title="Acknowledgments">
     <t>This draft incorporates many contributions from Stuart Cheshire and Chris Wood. Thanks to
        Florian Adamsky for extensive review and suggestions on the organization of the threat
-       model. Thanks to Barry Leiba for an extensive review.
+       model. Thanks to Barry Leiba for an extensive review. Thanks to Roman Danyliw, Ben Kaduk,
+       Adam Roach and Alissa Cooper for their comments during IESG review.
     </t>
 </section>
 
