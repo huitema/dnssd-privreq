@@ -76,7 +76,7 @@
 <?rfc inline='yes' ?>
 
 <rfc category="info" 
-     docName="draft-ietf-dnssd-prireq-05"
+     docName="draft-ietf-dnssd-prireq-04"
      ipr="trust200902">
 
 <front>
@@ -143,10 +143,10 @@ These risks also need to be mitigated when using server-based variants of DNS-SD
 </t>
 <t>
 There are cases when nodes connected to a network want to provide
-or consume services without exposing their identity to the other
-parties connected to the same network. Consider for example a
+or consume services without exposing their identities to the other
+parties connected to the same network. Consider, for example, a
 traveler wanting to upload pictures from a phone to a laptop
-when connected to the Wi-Fi network of an Internet cafe, or
+when both are connected to the Wi-Fi network of an Internet cafe, or
 two travelers who want to share files between their laptops
 when waiting for their plane in an airport lounge.
 </t>
@@ -159,10 +159,7 @@ discover this service, and then connect to it.
 <t>
 When analyzing these scenarios in <xref target="scenarios"/>, we find that
 the DNS-SD messages leak identifying information such as the service instance name,
-the host name, or service properties.
-</t>
-
-<t>
+the host name, or service properties. We use the following definitions:
 <list style="hanging">
 <t hangText="Identity">
   In this document, the term "identity" refers to the identity of the entity (legal person)
@@ -177,7 +174,8 @@ the host name, or service properties.
 </t>
 <t hangText="Disclosing Information">
   In this document "disclosing information" is also focused
-  on disclosure by data conveyed via messages on the service discovery protocol layer.
+  on disclosure of data conveyed via messages on the service discovery protocol layer,
+  such as generic non-identity but still potentially sensitive data.
 </t>
 </list>
 </t>
@@ -188,8 +186,9 @@ the host name, or service properties.
 
 <t>
   This document considers the following attacker types sorted by increasing power.
-  All these attackers can either be passive, i.e. they just listen to network traffic they have access to,
-  or active, i.e. they additionally can craft and send (malicious) packets.
+  All these attackers can either be passive (they
+  just listen to network traffic they have access to) or active
+  (they additionally can craft and send malicious packets).
 </t>
 
 <t>
@@ -200,12 +199,12 @@ the host name, or service properties.
 </t>
 <t hangText="on-link">
   An on-link attacker is on the same network link as victim devices engaging in service discovery;
-  thus, the external attacker is in the same multicast domain.
+  thus, the on-link attacker is in the same multicast domain.
   This attacker can also mount all attacks an external attacker can mount.
 </t>
 <t hangText="MITM">
   A Man in the Middle (MITM) attacker either controls (parts of) a network link
-  or can trick two parties to send traffic via him;
+  or can trick two parties to send traffic via the attacker;
   thus, the MITM attacker has access to unicast traffic between devices engaging in service discovery.
   This attacker can also mount all attacks an on-link attacker can mount.
 </t>
@@ -267,8 +266,9 @@ in an hotel, or at an airport.
 In that scenario, the server is public and wants to be discovered, but
 the client is private. The adversary will be listening to the network
 traffic, trying to identify the visitors' devices and their activity. 
-Identifying devices leads to identifying people, either just for
-tracking people or as a preliminary to targeted attacks.
+Identifying devices leads to identifying people, either for surveillance of
+these individuals in the physical world or as a preliminary step for a targeted
+cyber attack.
 </t>
 <t>
 The requirement in that scenario is that the discovery activity
@@ -280,8 +280,7 @@ should not disclose the identity of the client.
 <t>
 The second private discovery scenario involves a private client connecting
 to a private server. A common example would be two people engaging
-in a collaborative application in a public place, such as for 
-example an airport's lounge.
+in a collaborative application in a public place, such as an airport's lounge.
 </t>
 <t>
 <figure>
@@ -322,7 +321,9 @@ the owners of the devices.
 </t>
 <t>
 The requirement in that scenario is that the discovery activity
-should not disclose the identity of either the client or the server.
+should not disclose the identity of either the client or the server,
+nor reveal the business and social interactions between the owners of
+the devices.
 </t>
 </section>
 
@@ -375,8 +376,8 @@ wears.
 In addition to tracking the identity of the owner of the devices, the adversary
 is interested in the characteristics of the devices, such as type, brand, and model.
 Identifying the type of device can lead to further attacks, from theft to
-device specific hacking. The combination of devices worn by the same person
-will also provide a "fingerprint" of the person, allowing identification.
+device-specific hacking. The combination of devices worn by the same person
+will also provide a "fingerprint" of the person, risking identification.
 </t>
 
 <t>
@@ -385,6 +386,11 @@ A wearable IoT device might act as a DNS-SD/mDNS client which allows attackers t
 While the attacker might be a person as in the example figure,
 this could also be abused for large scale data collection installing stationary
 IoT-device-tracking servers in frequented public places.
+</t>
+
+<t>
+The issues described in <xref target="privclipubserv" /> such as identifying
+people or using the information for targeted attacks apply here too.
 </t>
 
 </section>
@@ -398,7 +404,7 @@ IoT-device-tracking servers in frequented public places.
   this document considers all kinds of means for making DNS-SD resource records available.
   These means comprise but are not limited to mDNS <xref target="RFC6762" />,
   DNS servers (<xref target="RFC1033"/> <xref target="RFC1034"/>, <xref target="RFC1035"/>),
-  e.g. using SRP <xref target="I-D.ietf-dnssd-srp"/>, and multi-link <xref target="RFC7558"/> networks.
+  using SRP <xref target="I-D.ietf-dnssd-srp"/>, and multi-link <xref target="RFC7558"/> networks.
 </t>
 
 <t>The discovery scenarios in <xref target="scenarios"/> illustrate three
@@ -422,15 +428,16 @@ separate abstract privacy requirements that vary based on the use case. These ar
 <t>
   Client identity privacy, if not addressed properly, can be thwarted by a passive attacker (see <xref target="threatmodel"/>).
   The type of passive attacker necessary depends on the means of making service information available.
-  Information conveyed via multicast messages can be obtained by an on-link attacker, while unicast messages are only
-  available to MITM attackers. Using multi-link service discovery solutions <xref target="RFC7558"/>,
+  Information conveyed via multicast messages can be obtained by an on-link attacker. Unicast messages are
+  easy to access if the transmission is not encrypted, but could still be accessed by an attacker with
+  access to network routers or bridges. Using multi-link service discovery solutions <xref target="RFC7558"/>,
   external attackers have to be taken into consideration as well, e.g., when relaying multicast messages to other links.
 </t>
 
 <t>
   Server identity privacy can be thwarted by a passive attacker in the same way as client identity privacy.
   Additionally, active attackers querying for information have to be taken into consideration as well.
-  This is mainly relevant for unicast based discovery, where listening to discovery traffic requires a
+  This is mainly relevant for unicast-based discovery, where listening to discovery traffic requires a
   MITM attacker; however, an external active attacker might be able to learn the server identity by just querying for
   service information, e.g. via DNS.
 </t>
@@ -460,9 +467,7 @@ specific properties of the service instance.
 </t>
 </list>
 </t>
-
 </section>
-
 
 <section title="Privacy Implication of Publishing Service Instance Names" anchor="instanceLeak" >
 <t>
@@ -513,6 +518,11 @@ as they are also using a _presence supporting chat application.
 This information is not just available to devices actively browsing for and offering 
 services, but to anybody passively listening to the network traffic, i.e. a passive on-link attacker.
 </t>
+<t>
+There is, of course, also no authentication requirement to claim a
+particular instance name, so an active attacker can provide resources
+that claim to be Alice's but are not.
+</t>
 </section>
 
 <section title="Privacy Implication of Publishing Node Names">
@@ -539,7 +549,7 @@ varies widely with the particular service and its implementation:
 <t>
 <list style="symbols">
 <t>
-Some attributes like the paper size available in a printer, are the
+Some attributes, such as the paper size available in a printer, are the
 same on many devices, and thus only provide limited information
 to a tracker.
 </t>
@@ -550,19 +560,19 @@ may reveal much more information.
 </list>
 </t>
 <t>
-Combinations of attributes have more information power than specific attributes,
+Combinations of individual attributes have more information power than specific attributes,
 and can potentially be used for "fingerprinting" a specific device.
 </t>
 
 <t>
-Information contained in TXT records does not only breach privacy by making devices
+Information contained in TXT records not only breaches privacy by making devices
 trackable, but might directly contain private information about the user.
 For instance the _presence service reveals the "chat status" to everyone in the same network.
 Users might not be aware of that.
 </t>
 
 <t>
-  Further, TXT records often contain version information about services allowing potential attackers
+  Further, TXT records often contain version information about services, allowing potential attackers
   to identify devices running exploit-prone versions of a certain service.
 </t>
 
@@ -594,13 +604,14 @@ Priority and weight attributes in the SRV records.
 This combination of services and attributes will often be sufficient to identify
 the version of the software running on a device. If a device publishes
 many services with rich sets of attributes, the combination may be
-sufficient to identify the specific device.
+sufficient to identify the specific device and track its owner.
 </t>
 
 <t>
 An argument is sometimes made that devices providing services can be identified
 by observing the local traffic, and that trying to hide the presence of the service
-is futile. However,
+is futile. However, there are good
+reasons for the discovery service layer to avoid unnecessary exposure:
 <list style="numbers">
 <t>
 Providing privacy at the discovery layer is of the essence for enabling automatically configured privacy-preserving
@@ -632,7 +643,7 @@ are interested in and the domains in which they are looking for the
 services. When the clients select specific instances of services,
 they reveal their preference for these instances. This can be benign if
 the service type is very common, but it could be more problematic
-for sensitive services, such as for example some private messaging services.
+for sensitive services, such as some private messaging services.
 </t>
 <t>
 One way to protect clients would be to somehow encrypt the requested service types.
@@ -713,7 +724,7 @@ analysis can often reveal the service.
     while the device itself goes to sleep to reduce power consumption.
     When the proxy determines that some action is required which only
     the device itself can perform, the proxy may have some way to wake the
-    device, as implied in <xref target="RFC6762">RFC6762</xref></t>
+    device, as described for example in <xref target="SLEEP-PROXY" />.</t>
 
     <t>In many cases, the device may not trust the network proxy
     sufficiently to share all its confidential key material with the proxy.
@@ -729,16 +740,17 @@ analysis can often reveal the service.
     <t>Creating a discovery protocol that has the desired security
     properties may result in a design that is not efficient.
     To perform the necessary operations the protocol may
-    need to send and receive a large number of network packets.
+    need to send and receive a large number of network packets,
+    or require an inordinate amount of multicast transmissions.
     This may consume an unreasonable amount of network capacity,
     particularly problematic when it is a shared wireless spectrum.
-    Further it may cause an unnecessary level of power consumption
+    Further, it may cause an unnecessary level of power consumption
     which is particularly problematic on battery devices,
     and may result in the discovery process being slow.</t>
 
     <t>It is a difficult challenge to design a discovery protocol that has the
     property of obscuring the details of what it is doing from unauthorized
-    observers, while also managing to do that efficiently.</t>
+    observers, while also managing to perform efficiently.</t>
 
   </section>
 
@@ -765,7 +777,7 @@ analysis can often reveal the service.
     trust is established immediately prior to performing discovery. Users
     will have a tendency to "click OK" in order to achieve their task. This
     implicit vulnerability is avoided if the trust establishment requires
-    active participation of the user, such as entering a password or PIN.
+    more significant participation of the user, such as entering a password or PIN.
     </t>
 
   </section>
@@ -789,15 +801,15 @@ analysis can often reveal the service.
   </t>
   <t>
     Defining a solution according to these requirements is intended to lead to a solution that
-    does not transmit privacy violating DNS-SD messages and further does not open pathways to new attacks against the
+    does not transmit privacy-violating DNS-SD messages and further does not open pathways to new attacks against the
     operation of DNS-SD.
   </t>
 
   <t>
     However, while this document gives advice on which
-    privacy protecting mechanisms should be used on deeper layer network
-    protocols and on how to actually connect to services in a privacy
-    preserving way, stating corresponding requirements is out of the scope of this document.
+    privacy protecting mechanisms should be used on deeper-layer network
+    protocols and on how to actually connect to services in a 
+    privacy-preserving way, stating corresponding requirements is out of the scope of this document.
     To mitigate attacks against privacy on lower layers,
     both servers and clients must use privacy options available at lower layers,
     and for example avoid publishing static IPv4 or IPv6 addresses, or static IEEE 802 MAC addresses.
@@ -855,12 +867,12 @@ analysis can often reveal the service.
            Avoid exposure of linkable identifiers that allow tracing servers.
         </t>
         <t>
-          Avoid disclosure of service instance names or service types
-          of offered services to unauthorized clients.
+          Avoid disclosure to unauthorized clients of service instance names or service types
+          of offered services.
         </t>
         <t>
-          Avoid disclosure of information about the services they offer to
-          unauthorized clients.
+          Avoid disclosure to
+          unauthorized clients of information about the services they offer.
         </t>
         <t>
           Avoid disclosure of static IPv4 or IPv6 addresses.
@@ -872,6 +884,13 @@ analysis can often reveal the service.
       offered services (PRT, SRV), and information about services (TXT).
       Heeding these requirements protects a server's privacy on the DNS-SD level.
     </t>
+    <t>
+      The current DNS-SD user interfaces present the list of discovered service names to the users,
+      and let them pick a service from the list. Using random identifiers for service names renders
+      that UI flow unusable. Privacy-respecting discovery protocols will have to solve this issue,
+      for example by presenting authenticated or decrypted service names instead of the
+      randomized values.
+    </t>
   </section>
 
   <section title="Security and Operation">
@@ -882,7 +901,7 @@ analysis can often reveal the service.
         <t>
           Avoiding significant CPU overhead on nodes or significantly higher network load.
           Such overhead or load would make nodes vulnerable to denial of service
-          attacks. Further, it would increase power consumption which is critical for IoT devices.
+          attacks. Further, it would increase power consumption which is damaging for IoT devices.
         </t>
         <t>
           Avoiding designs in which a small message can trigger a large
@@ -902,15 +921,23 @@ This draft does not require any IANA action.
 <section title="Acknowledgments">
     <t>This draft incorporates many contributions from Stuart Cheshire and Chris Wood. Thanks to
        Florian Adamsky for extensive review and suggestions on the organization of the threat
-       model.
+       model. Thanks to Barry Leiba for an extensive review. Thanks to Roman Danyliw, Ben Kaduk,
+       Adam Roach and Alissa Cooper for their comments during IESG review.
     </t>
 </section>
 
 </middle>
 
 <back>
-<references title="Informative References">
+
+<references title="Normative References">
+
+  &rfc6762;
   &rfc6763;
+
+</references>  
+
+<references title="Informative References">
   &rfc1033;
   &rfc1034;
   &rfc1035;
@@ -918,7 +945,6 @@ This draft does not require any IANA action.
   &rfc3927;
   &rfc4291;
   &rfc5054;
-  &rfc6762;
   &rfc7558;
   &rfc7844;
   &rfc8117;
@@ -961,6 +987,16 @@ This draft does not require any IANA action.
       <organization/>
     </author>
     <date year="2017"/>
+  </front>
+</reference>
+
+<reference anchor="SLEEP-PROXY" target="http://stuartcheshire.org/SleepProxy/index.html">
+  <front>
+    <title>Understanding Sleep Proxy Service</title>
+    <author initials="S." surname="Cheshire" fullname="Stuart Cheshire">
+      <organization/>
+    </author>
+    <date year="2009"/>
   </front>
 </reference>
 
